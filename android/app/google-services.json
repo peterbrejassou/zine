@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "713136676544",
+    "firebase_url": "https://zine-b4872.firebaseio.com",
+    "project_id": "zine-b4872",
+    "storage_bucket": "zine-b4872.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713136676544:android:c2c67bf80030719fabd725",
+        "android_client_info": {
+          "package_name": "com.brejassou.zine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713136676544-lq9fup4otpsjnar13thdoec38b0244l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3PQk1lRUmqpJZ8FkJmtMnZKDoFCKFpec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713136676544-lq9fup4otpsjnar13thdoec38b0244l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
