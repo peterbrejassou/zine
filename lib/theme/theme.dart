@@ -23,3 +23,16 @@ ThemeData buildThemeData() {
     ),
   );
 }
+
+class CustomTextStyle {
+  static TextStyle green20(BuildContext context) {
+    return Theme.of(context).textTheme.headline.copyWith(color: greenZine);
+  }
+
+  static TextStyle bold18(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .body1
+        .copyWith(fontSize: 18, fontWeight: FontWeight.bold);
+  }
+}
