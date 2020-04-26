@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 
-class LoginPage extends StatefulWidget {
+class ResetPasswordPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _ResetPasswordPageState createState() => _ResetPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
   TextEditingController _email;
   TextEditingController _password;
 
@@ -30,46 +30,34 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.black,
       body: Container(
         margin: EdgeInsets.only(top: 25),
-        padding: EdgeInsets.fromLTRB(30, 50, 30, 40),
+        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Image.asset(
-                "assets/logo_zine.png",
-                width: 250,
+                'assets/logo_zine.png',
+                width: 180,
+              ),
+              Text(
+                'Mot de passe oublié',
+                style: Theme.of(context).textTheme.headline,
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
-              CustomTextField(field: "Nom d'utilisateur"),
-              Padding(padding: EdgeInsets.only(top: 15)),
-              CustomTextField(field: "Mot de passe"),
+              Text(
+                'Saisissez votre adresse mail ci-dessous,\nvous recevrez les instructions pour réinitialiser votre mot de passe.',
+              ),
+              Padding(padding: EdgeInsets.only(top: 40)),
+              CustomTextField(field: "Adresse email"),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                 callback: null,
-                text: "Connexion",
+                text: "Envoyer",
               ),
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: Container(
-          height: 40,
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(text: 'Pas encore de compte ? '),
-                TextSpan(
-                    text: 'Inscrivez-vous ! ',
-                    style: Theme.of(context).textTheme.body2),
-              ],
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        elevation: 0,
       ),
     );
   }

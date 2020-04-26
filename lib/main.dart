@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'services/services.dart';
-import 'pages/pages.dart';
+import 'package:zine/theme/theme.dart';
+import 'services/_services.dart';
+import 'pages/_pages.dart';
 
 void main() => runApp(ZineApp());
 
@@ -16,14 +17,12 @@ class ZineApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => LoginPage(),
-          '/home': (context) => HomePage(),
+          '/': (context) => HomePage(),
+          '/login': (context) => LoginPage(),
+          '/register': (context) => RegisterPage(),
+          '/reset-password': (context) => ResetPasswordPage(),
         },
-        theme: ThemeData(
-          fontFamily: 'Product Sans',
-          brightness: Brightness.dark,
-          textTheme: TextTheme(),
-        ),
+        theme: buildThemeData(),
       ),
     );
   }
