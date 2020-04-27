@@ -2,36 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zine/theme/constants.dart';
 
-class ZineBottomNavigationBar extends BottomNavigationBar {
-  ZineBottomNavigationBar({
-    @required int selectedIndex,
-    @required onTap,
-  }) : super(
-          backgroundColor: Colors.black,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: selectedIndex,
-          selectedItemColor: greenZine,
-          selectedFontSize: 10,
-          type: BottomNavigationBarType.fixed,
-          onTap: onTap,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.checkSquare),
-              title: Text("Accueil"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.newspaper),
-              title: Text("Accueil"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.gamepad),
-              title: Text("Accueil"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.globe),
-              title: Text("Accueil"),
-            ),
-          ],
-        );
+class ZineBottomNavigationBar extends StatefulWidget {
+  @override
+  _ZineBottomNavigationBarState createState() =>
+      _ZineBottomNavigationBarState();
+}
+
+class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    Navigator.pushNamed(context, bottomBarItems[_selectedIndex]);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: Colors.black,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      currentIndex: _selectedIndex,
+      selectedItemColor: greenZine,
+      type: BottomNavigationBarType.fixed,
+      onTap: _onItemTapped,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.checkSquare),
+          title: Text("Home"),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.newspaper),
+          title: Text("News"),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.gamepad),
+          title: Text("Game"),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.globe),
+          title: Text("Friends"),
+        ),
+      ],
+    );
+  }
 }

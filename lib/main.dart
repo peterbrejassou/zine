@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:zine/pages/news.dart';
 import 'package:zine/theme/theme.dart';
 import 'services/_services.dart';
 import 'pages/_pages.dart';
@@ -21,6 +22,9 @@ class ZineApp extends StatelessWidget {
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
           '/reset-password': (context) => ResetPasswordPage(),
+          '/news': (context) => NewsPage(),
+          '/game': (context) => GamePage(),
+          '/friends': (context) => FriendsPage(),
         },
         theme: buildThemeData(),
       ),

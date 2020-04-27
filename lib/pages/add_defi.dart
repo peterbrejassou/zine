@@ -3,15 +3,13 @@ import 'package:zine/components/appbar.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/components/category_defi.dart';
 import 'package:zine/components/navigation_bar.dart';
-import 'package:zine/theme/constants.dart';
-import 'package:zine/theme/theme.dart';
 
-class HomePage extends StatefulWidget {
+class AddDefi extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _AddDefiState createState() => _AddDefiState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AddDefiState extends State<AddDefi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,26 +20,26 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             ZineAppBar(),
             Expanded(
-              child: SingleChildScrollView(
+              child: Container(
                 padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Habitudes du moment",
+                      "Quel défi souhaitez-vous démarrer ?",
                       style: Theme.of(context).textTheme.title,
                     ),
                     Padding(padding: EdgeInsets.only(top: 45)),
                     Column(children: <Widget>[
-                      CardDefi(),
+                      CategoryDefi(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
+                      CategoryDefi(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
+                      CategoryDefi(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
+                      CategoryDefi(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
+                      CategoryDefi(),
                     ])
                   ],
                 ),

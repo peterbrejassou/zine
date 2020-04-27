@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+// BottomBar Items
+Map<int, String> bottomBarItems = {
+  0: "/home",
+  1: "/news",
+  2: "/game",
+  3: "/friends"
+};
+
 // Material Colors
 Map<int, Color> color = {
   50: Color.fromRGBO(79, 178, 134, .1),
