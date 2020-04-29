@@ -18,11 +18,11 @@ class ZineApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => HomePage(),
+          '/home': (context) => HomePage(),
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
           '/reset-password': (context) => ResetPasswordPage(),
-          '/news': (context) => NewsPage(),
+          '/': (context) => NewsPage(),
           '/game': (context) => GamePage(),
           '/friends': (context) => FriendsPage(),
         },

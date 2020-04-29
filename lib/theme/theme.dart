@@ -32,10 +32,17 @@ class CustomTextStyle {
   }
 
   static TextStyle bold18(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .body1
-        .copyWith(fontSize: 18, fontWeight: FontWeight.bold);
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        );
+  }
+
+  static TextStyle bold20(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        );
   }
 
   static TextStyle regular18(BuildContext context) {
