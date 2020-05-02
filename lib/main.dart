@@ -22,6 +22,8 @@ class ZineApp extends StatelessWidget {
           '/register': (context) => RegisterPage(),
           '/reset-password': (context) => ResetPasswordPage(),
           '/home': (context) => HomePage(),
+          '/add-defi': (context) => AddDefi(),
+          '/defi-details': (context) => DefiDetails(),
           '/news': (context) => NewsPage(),
           '/article': (context) => ArticlePage(),
           '/game': (context) => GamePage(),

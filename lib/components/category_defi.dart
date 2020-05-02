@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zine/components/_components.dart';
 import 'package:zine/theme/constants.dart';
 
 class CategoryDefi extends StatelessWidget {
@@ -6,9 +7,11 @@ class CategoryDefi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        CircleAvatar(
-          backgroundColor: greenZine,
-          radius: 30,
+        IconCircleBackground(
+          icon: 'user.png',
+          color: greenZine,
+          width: 65,
+          padding: 12,
         ),
         Padding(padding: EdgeInsets.only(left: 15)),
         Column(

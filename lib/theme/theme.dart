@@ -31,6 +31,13 @@ class CustomTextStyle {
     return Theme.of(context).textTheme.headline.copyWith(color: greenZine);
   }
 
+  static TextStyle bold13(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+        );
+  }
+
   static TextStyle bold16(BuildContext context) {
     return Theme.of(context).textTheme.body1.copyWith(
           fontSize: 16,

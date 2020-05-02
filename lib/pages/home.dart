@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/appbar.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/theme/constants.dart';
+import 'package:zine/theme/theme.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,10 +36,6 @@ class _HomePageState extends State<HomePage> {
                       CardDefi(),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       CardDefi(),
-                      Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
-                      Padding(padding: EdgeInsets.only(top: 20)),
-                      CardDefi(),
                     ])
                   ],
                 ),
@@ -46,6 +44,17 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, '/add-defi');
+        },
+        label: Text(
+          'Ajouter un défi'.toUpperCase(),
+          style: CustomTextStyle.bold13(context),
+        ),
+        backgroundColor: greenZine,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }

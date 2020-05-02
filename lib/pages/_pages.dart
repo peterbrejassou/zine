@@ -1,5 +1,6 @@
 export 'add_defi.dart';
 export 'article.dart';
+export 'defi_details.dart';
 export 'friends.dart';
 export 'game.dart';
 export 'home.dart';

@@ -9,7 +9,7 @@ class CardDefi extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          '/article',
+          '/defi-details',
           arguments: <String, String>{
             'defi': 'Manger Bio simple',
             'category': 'Nutrition basique',
