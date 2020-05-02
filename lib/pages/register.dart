@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/services/_services.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -7,20 +8,28 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  AuthService _auth = AuthService();
+
+  TextEditingController _username;
   TextEditingController _email;
   TextEditingController _password;
+  TextEditingController _passwordConfirm;
 
   @override
   void initState() {
     super.initState();
+    _username = TextEditingController();
     _email = TextEditingController();
     _password = TextEditingController();
+    _passwordConfirm = TextEditingController();
   }
 
   @override
   void dispose() {
+    _username.dispose();
     _email.dispose();
     _password.dispose();
+    _passwordConfirm.dispose();
     super.dispose();
   }
 
@@ -45,22 +54,39 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: Theme.of(context).textTheme.headline,
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
-              CustomTextField(field: "Nom d'utilisateur"),
+              CustomTextField(
+                field: "Nom d'utilisateur",
+                controller: _username,
+              ),
               Padding(padding: EdgeInsets.only(top: 15)),
-              CustomTextField(field: "Adresse email"),
+              CustomTextField(
+                field: "Adresse email",
+                controller: _email,
+              ),
               Padding(padding: EdgeInsets.only(top: 15)),
               CustomTextField(
                 field: "Mot de passe",
+                controller: _password,
                 obscure: true,
               ),
               Padding(padding: EdgeInsets.only(top: 15)),
               CustomTextField(
                 field: "Confirmation du mot de passe",
+                controller: _passwordConfirm,
                 obscure: true,
               ),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
-                callback: null,
+                callback: () async {
+                  var newUser = await _auth.register(
+                    _email.text,
+                    _password.text,
+                    _username.text,
+                  );
+                  if (newUser != null) {
+                    Navigator.pushReplacementNamed(context, '/');
+                  }
+                },
                 text: "Inscription",
               ),
             ],

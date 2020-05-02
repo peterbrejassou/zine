@@ -13,9 +13,10 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
 
   void _onItemTapped(int index) {
     setState(() {
+      print("Index: " + index.toString());
       _selectedIndex = index;
     });
-    Navigator.pushNamed(context, bottomBarItems[_selectedIndex]);
+    Navigator.pushReplacementNamed(context, bottomBarItems[_selectedIndex]);
   }
 
   @override
@@ -27,7 +28,9 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
       currentIndex: _selectedIndex,
       selectedItemColor: greenZine,
       type: BottomNavigationBarType.fixed,
-      onTap: _onItemTapped,
+      onTap: (index) {
+        _onItemTapped(index);
+      },
       items: [
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.checkSquare),

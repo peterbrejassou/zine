@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
   final String field;
   final TextInputType type;
   final bool obscure;
 
   CustomTextField({
+    @required this.controller,
     @required this.field,
     this.type: TextInputType.text,
     this.obscure: false,
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
         Text(field),
         Padding(padding: EdgeInsets.only(top: 8)),
         TextField(
+          controller: controller,
           keyboardType: type,
           obscureText: obscure,
           decoration: InputDecoration(

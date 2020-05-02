@@ -29,6 +29,11 @@ flutter:
   assets:
     - assets/logo_zine.png
     - assets/john_doe.png
+    - assets/icons/cross.png
+    - assets/icons/design.png
+    - assets/icons/logout.png
+    - assets/icons/notification.png
+    - assets/icons/user.png
 
   fonts:
     - family: ProductSans

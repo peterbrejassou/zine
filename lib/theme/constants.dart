@@ -25,3 +25,4 @@ MaterialColor greenZineMaterial = MaterialColor(0xFF4FB286, color);
 
 // Colors
 const Color greenZine = const Color(0xFF4FB286);
+const Color grayZine = const Color(0xFF626262);

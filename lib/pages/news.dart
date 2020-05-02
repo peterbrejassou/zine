@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/theme/constants.dart';
+import 'package:zine/theme/theme.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -16,21 +18,46 @@ class _NewsPageState extends State<NewsPage>
   ];
 
   List<Widget> tabviews = [
-    SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(color: Colors.red, height: 100),
-          Container(color: Colors.blue, height: 100),
-          Container(color: Colors.red, height: 100),
-          Container(color: Colors.blue, height: 100),
-          Container(color: Colors.red, height: 100),
-          Container(color: Colors.blue, height: 100),
-          Container(color: Colors.red, height: 100),
-          Container(color: Colors.blue, height: 100),
-          Container(color: Colors.red, height: 100),
-        ],
-      ),
-    ),
+    StreamBuilder<Object>(
+        stream: null,
+        builder: (context, snapshot) {
+          return SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                ArticleCard(
+                  image: "assets/logo_zine.png",
+                  category: "Manger Bio",
+                  title: "La saisonnalité des fruits et légumes",
+                  likes: "3K",
+                ),
+                ArticleCard(
+                  image: "assets/logo_zine.png",
+                  category: "Manger Bio",
+                  title: "La saisonnalité des fruits et légumes",
+                  likes: "3K",
+                ),
+                ArticleCard(
+                  image: "assets/logo_zine.png",
+                  category: "Manger Bio",
+                  title: "La saisonnalité des fruits et légumes",
+                  likes: "3K",
+                ),
+                ArticleCard(
+                  image: "assets/logo_zine.png",
+                  category: "Manger Bio",
+                  title: "La saisonnalité des fruits et légumes",
+                  likes: "3K",
+                ),
+                ArticleCard(
+                  image: "assets/logo_zine.png",
+                  category: "Manger Bio",
+                  title: "La saisonnalité des fruits et légumes",
+                  likes: "3K",
+                ),
+              ],
+            ),
+          );
+        }),
     SingleChildScrollView(),
   ];
 

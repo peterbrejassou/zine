@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/services/_services.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,14 +8,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  AuthService _auth = AuthService();
   TextEditingController _email;
   TextEditingController _password;
 
   @override
   void initState() {
     super.initState();
+
     _email = TextEditingController();
     _password = TextEditingController();
+
+    _auth.getUser.then(
+      (user) {
+        if (user != null) {
+          Navigator.pushReplacementNamed(context, '/home');
+        }
+      },
+    );
   }
 
   @override
@@ -41,12 +52,23 @@ class _LoginPageState extends State<LoginPage> {
                 width: 250,
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
-              CustomTextField(field: "Nom d'utilisateur"),
+              CustomTextField(
+                field: "Nom d'utilisateur",
+                controller: _email,
+              ),
               Padding(padding: EdgeInsets.only(top: 15)),
-              CustomTextField(field: "Mot de passe"),
+              CustomTextField(
+                field: "Mot de passe",
+                controller: _password,
+              ),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
-                callback: null,
+                callback: () async {
+                  var user = await _auth.signIn(_email.text, _password.text);
+                  if (user != null) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  }
+                },
                 text: "Connexion",
               ),
             ],
@@ -57,16 +79,21 @@ class _LoginPageState extends State<LoginPage> {
         color: Colors.transparent,
         child: Container(
           height: 40,
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(text: 'Pas encore de compte ? '),
-                TextSpan(
-                    text: 'Inscrivez-vous ! ',
-                    style: Theme.of(context).textTheme.body2),
-              ],
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/register');
+            },
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(text: 'Pas encore de compte ? '),
+                  TextSpan(
+                      text: 'Inscrivez-vous ! ',
+                      style: Theme.of(context).textTheme.body2),
+                ],
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
         elevation: 0,

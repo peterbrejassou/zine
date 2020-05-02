@@ -14,7 +14,7 @@ class CustomButton extends FlatButton {
           color: backgroundColor,
           textColor: textColor,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-          onPressed: () {},
+          onPressed: callback,
           child: Text(text.toUpperCase()),
         );
 }

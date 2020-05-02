@@ -1,8 +1,10 @@
 export 'add_defi.dart';
+export 'article.dart';
 export 'friends.dart';
 export 'game.dart';
 export 'home.dart';
 export 'login.dart';
 export 'news.dart';
+export 'profile.dart';
 export 'register.dart';
 export 'reset_password.dart';

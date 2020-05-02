@@ -33,7 +33,7 @@ class ZineAppBar extends StatelessWidget {
               backgroundImage: AssetImage('assets/john_doe.png'),
               child: InkWell(
                 onTap: () {
-                  //Navigator.pushNamed(context, '/register');
+                  Navigator.pushNamed(context, '/profile');
                 },
               ),
             ),
