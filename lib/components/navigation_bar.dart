@@ -22,7 +22,7 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       currentIndex: _selectedIndex,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/services/_services.dart';
+import 'package:zine/theme/constants.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),

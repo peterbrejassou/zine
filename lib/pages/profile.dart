@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/services/_services.dart';
+import 'package:zine/theme/constants.dart';
 import 'package:zine/theme/theme.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
         padding: EdgeInsets.symmetric(horizontal: 30),

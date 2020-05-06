@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/services/_services.dart';
+import 'package:zine/theme/constants.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
         padding: EdgeInsets.fromLTRB(30, 50, 30, 40),
@@ -60,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               CustomTextField(
                 field: "Mot de passe",
                 controller: _password,
+                obscure: true,
               ),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(

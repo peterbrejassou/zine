@@ -45,9 +45,23 @@ class CustomTextStyle {
         );
   }
 
+  static TextStyle bold17(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        );
+  }
+
   static TextStyle bold18(BuildContext context) {
     return Theme.of(context).textTheme.body1.copyWith(
           fontSize: 18,
+          fontWeight: FontWeight.bold,
+        );
+  }
+
+  static TextStyle bold19(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 19,
           fontWeight: FontWeight.bold,
         );
   }
@@ -67,6 +81,32 @@ class CustomTextStyle {
         );
   }
 
+  static TextStyle regular12green(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 12,
+          color: greenZine,
+        );
+  }
+
+  static TextStyle regular15(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(fontSize: 15);
+  }
+
+  static TextStyle regular15gray(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 15,
+          color: Colors.grey,
+          height: 1.4,
+        );
+  }
+
+  static TextStyle regular15green(BuildContext context) {
+    return Theme.of(context).textTheme.body1.copyWith(
+          fontSize: 15,
+          color: greenZine,
+        );
+  }
+
   static TextStyle regular16(BuildContext context) {
     return Theme.of(context).textTheme.body1.copyWith(fontSize: 16);
   }
@@ -81,12 +121,5 @@ class CustomTextStyle {
 
   static TextStyle regular25(BuildContext context) {
     return Theme.of(context).textTheme.body1.copyWith(fontSize: 25);
-  }
-
-  static TextStyle regular12green(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .body1
-        .copyWith(fontSize: 12, color: greenZine);
   }
 }

@@ -1,51 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:zine/models/_models.dart';
 import 'package:zine/theme/constants.dart';
 import 'package:zine/theme/theme.dart';
 
 class ArticleCard extends StatelessWidget {
-  final String image;
-  final String category;
-  final String title;
-  final String likes;
-
-  const ArticleCard(
-      {Key key, this.image, this.category, this.title, this.likes})
-      : super(key: key);
+  final Article article;
+  const ArticleCard({Key key, this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget;
+    if (article.img == '' || article.img == null) {
+      imageWidget = Image.asset("assets/default_img_article.png", width: 85);
+    } else {
+      imageWidget = Image.network(article.img ?? '', width: 85);
+    }
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/article',
-          arguments: <String, String>{
-            'title': 'Manger Bio simple',
-            'category': 'Nutrition basique',
-          },
-        );
+        Navigator.pushNamed(context, '/article', arguments: article);
       },
       child: Container(
         padding: EdgeInsets.all(15),
         child: Row(
           children: <Widget>[
-            Image.asset(
-              image,
-              width: 85,
-            ),
+            imageWidget,
             Padding(padding: EdgeInsets.only(left: 15)),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Manger Bio".toUpperCase(),
+                  article.category.toUpperCase(),
                   style: CustomTextStyle.regular12green(context),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width - 130,
                   child: Text(
-                    "La saisonnalité des fruits et légumes",
+                    article.title,
                     style: CustomTextStyle.bold16(context),
                     textAlign: TextAlign.left,
                   ),

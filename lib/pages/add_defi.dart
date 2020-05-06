@@ -3,6 +3,7 @@ import 'package:zine/components/appbar.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/components/category_defi.dart';
 import 'package:zine/components/navigation_bar.dart';
+import 'package:zine/theme/constants.dart';
 
 class AddDefi extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _AddDefiState extends State<AddDefi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
         child: Column(

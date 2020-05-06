@@ -24,5 +24,7 @@ Map<int, Color> color = {
 MaterialColor greenZineMaterial = MaterialColor(0xFF4FB286, color);
 
 // Colors
+const Color backgroundTheme = const Color(0xFF000000);
 const Color greenZine = const Color(0xFF4FB286);
 const Color grayZine = const Color(0xFF626262);
+const Color redZine = const Color(0xFFB24F4F);

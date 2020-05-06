@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/models/_models.dart';
+import 'package:zine/services/_services.dart';
 import 'package:zine/theme/constants.dart';
-import 'package:zine/theme/theme.dart';
+import 'package:provider/provider.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -18,53 +21,38 @@ class _NewsPageState extends State<NewsPage>
   ];
 
   List<Widget> tabviews = [
-    StreamBuilder<Object>(
-        stream: null,
-        builder: (context, snapshot) {
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                ArticleCard(
-                  image: "assets/logo_zine.png",
-                  category: "Manger Bio",
-                  title: "La saisonnalité des fruits et légumes",
-                  likes: "3K",
-                ),
-                ArticleCard(
-                  image: "assets/logo_zine.png",
-                  category: "Manger Bio",
-                  title: "La saisonnalité des fruits et légumes",
-                  likes: "3K",
-                ),
-                ArticleCard(
-                  image: "assets/logo_zine.png",
-                  category: "Manger Bio",
-                  title: "La saisonnalité des fruits et légumes",
-                  likes: "3K",
-                ),
-                ArticleCard(
-                  image: "assets/logo_zine.png",
-                  category: "Manger Bio",
-                  title: "La saisonnalité des fruits et légumes",
-                  likes: "3K",
-                ),
-                ArticleCard(
-                  image: "assets/logo_zine.png",
-                  category: "Manger Bio",
-                  title: "La saisonnalité des fruits et légumes",
-                  likes: "3K",
-                ),
-              ],
-            ),
-          );
-        }),
-    SingleChildScrollView(),
+    /* 
+     * FIRST TAB
+     */
+    FutureBuilder(
+      future: Globals.articelsRef.getData(),
+      builder: (BuildContext context, AsyncSnapshot snap) {
+        if (!snap.hasData) {
+          return ZineLoader();
+        }
+        List<Article> articles = snap.data;
+        return ListView.builder(
+          itemCount: articles.length,
+          itemBuilder: (BuildContext context, int index) {
+            Article article = articles[index];
+            return ArticleCard(article: article);
+          },
+        );
+      },
+    ),
+
+    /* 
+     * SECOND TAB
+     */
+    SingleChildScrollView(
+      child: Text("Page de statistiques"),
+    ),
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = new TabController(length: tabs.length, vsync: this);
   }
 
   @override
@@ -76,19 +64,21 @@ class _NewsPageState extends State<NewsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      appBar: ZineAppBar(),
+      backgroundColor: backgroundTheme,
       body: Container(
-        margin: EdgeInsets.only(top: 25),
         child: Column(
           children: <Widget>[
-            ZineAppBar(),
-            Padding(padding: EdgeInsets.only(top: 10)),
-            NestedTabBar(tabs: tabs, tabviews: tabviews),
-            ZineBottomNavigationBar(),
+            Padding(padding: EdgeInsets.only(top: 3)),
+            CustomTabBar(
+              tabController: _tabController,
+              tabs: tabs,
+              tabviews: tabviews,
+            )
           ],
         ),
       ),
-      //bottomNavigationBar: ZineBottomNavigationBar(),
+      bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }
 }

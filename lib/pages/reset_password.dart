@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/theme/constants.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -8,26 +9,23 @@ class ResetPasswordPage extends StatefulWidget {
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   TextEditingController _email;
-  TextEditingController _password;
 
   @override
   void initState() {
     super.initState();
     _email = TextEditingController();
-    _password = TextEditingController();
   }
 
   @override
   void dispose() {
     _email.dispose();
-    _password.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -49,7 +47,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 'Saisissez votre adresse mail ci-dessous,\nvous recevrez les instructions pour réinitialiser votre mot de passe.',
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
-              CustomTextField(field: "Adresse email"),
+              CustomTextField(controller: _email, field: "Adresse email"),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                 callback: null,
