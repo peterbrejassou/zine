@@ -10,7 +10,7 @@ class AuthService {
 
   Future<FirebaseUser> get getUser => _auth.currentUser();
 
-  Stream<FirebaseUser> get user => _auth.onAuthStateChanged;
+  Stream<FirebaseUser> get streamUser => _auth.onAuthStateChanged;
 
   Future<FirebaseUser> register(String email, password, username) async {
     final FirebaseUser newUser = (await _auth.createUserWithEmailAndPassword(

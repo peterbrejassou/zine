@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:zine/components/appbar.dart';
 import 'package:zine/components/button.dart';
 import 'package:zine/components/navigation_bar.dart';
+import 'package:zine/models/defi.dart';
 import 'package:zine/theme/constants.dart';
 import 'package:zine/theme/theme.dart';
 import 'dart:math' as math;
 import 'package:share/share.dart';
 
 class DefiDetails extends StatelessWidget {
-  const DefiDetails({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var arguments = ModalRoute.of(context).settings.arguments as Map;
+    Defi defi = arguments['defi'];
+    bool newDefi = arguments['newDefi'];
+
+    int totalPointsDefi = 0;
+    defi.steps.forEach((step) {
+      totalPointsDefi += step.points;
+    });
     return Scaffold(
       appBar: ZineAppBar(),
       backgroundColor: backgroundTheme,
@@ -21,7 +28,7 @@ class DefiDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Manger Bio",
+              defi.title,
               style: CustomTextStyle.regular25(context),
             ),
             Padding(padding: EdgeInsets.only(top: 5)),
@@ -49,7 +56,7 @@ class DefiDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "750",
+                      defi.nbParticipants.toString(),
                       style: CustomTextStyle.bold19(context),
                     ),
                     Text(
@@ -63,7 +70,7 @@ class DefiDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "500",
+                      totalPointsDefi.toString(),
                       style: CustomTextStyle.bold19(context),
                     ),
                     Text(
@@ -75,26 +82,7 @@ class DefiDetails extends StatelessWidget {
               ],
             ),
             Padding(padding: EdgeInsets.only(top: 25)),
-            Center(
-              child: Text(
-                "Tu fais ta part bravo !",
-                style: CustomTextStyle.regular15green(context),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 15)),
-            Center(
-              child: CustomButtonIcon(
-                label: "Partager",
-                icon: Icon(Icons.share),
-                callback: () {
-                  Share.share('check out my website https://example.com',
-                      subject: 'Look what I made!');
-                },
-                backgroundColor: Colors.transparent,
-                textColor: greenZine,
-              ),
-            ),
+            _buildConditionNewDefi(newDefi, defi, context),
             Padding(padding: EdgeInsets.only(top: 35)),
             Container(
               decoration: BoxDecoration(
@@ -136,7 +124,7 @@ class DefiDetails extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 Text(
-                  "En plus de contenir logiquement moins de pesticides mais aussi moins de métaux lourds (-48%), les produits biologiques contiennent  davantage de polyphénols (jusqu’à 60% de plus) et d’antioxydants que les produits conventionnels. C’est ce que montre une équipe internationale d’experts, dirigée par l’université de Newcastle au Royaume-Uni, dans un état de l’art sur les avantages et/ou désavantages nutritionnels, des cultures ou aliments à base de plantes cultivées en agriculture biologique (AB), face à ceux issus de l’agriculture conventionnelle.",
+                  defi.description,
                   style: CustomTextStyle.regular15gray(context),
                 ),
               ],
@@ -148,6 +136,7 @@ class DefiDetails extends StatelessWidget {
                 callback: () {},
                 backgroundColor: Colors.transparent,
                 textColor: redZine,
+                borderColor: redZine,
               ),
             ),
           ],
@@ -156,4 +145,44 @@ class DefiDetails extends StatelessWidget {
       bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }
+}
+
+Widget _buildConditionNewDefi(bool newDefi, Defi defi, BuildContext context) {
+  if (newDefi == true) {
+    return Center(
+      child: CustomButton(
+          text: "Faire ma part",
+          callback: () {
+            print("faire la part");
+          }),
+    );
+  } else {
+    return Column(
+      children: <Widget>[
+        Center(
+          child: Text(
+            "Tu fais ta part bravo !",
+            style: CustomTextStyle.regular15green(context),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Padding(padding: EdgeInsets.only(top: 15)),
+        Center(
+          child: CustomButtonIcon(
+            label: "Partager",
+            icon: Icon(Icons.share),
+            callback: () {
+              Share.share('Je réalise le défi "' +
+                  defi.title +
+                  '". Viens me rejoindre sur Zine !');
+            },
+            backgroundColor: Colors.transparent,
+            textColor: greenZine,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /*  */
 }

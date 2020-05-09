@@ -40,7 +40,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               ),
               Text(
                 'Mot de passe oublié',
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.headline1,
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
               Text(

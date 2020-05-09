@@ -3,12 +3,14 @@ import 'package:zine/theme/constants.dart';
 
 class IconCircleBackground extends StatelessWidget {
   final String icon;
+  final String image;
   final Color color;
   final double width;
   final double padding;
 
   const IconCircleBackground({
-    @required this.icon,
+    this.icon,
+    this.image,
     this.color = grayZine,
     this.width: 40,
     this.padding: 12,
@@ -16,6 +18,15 @@ class IconCircleBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget;
+    if (icon != null) {
+      imageWidget = Image.asset(
+        'assets/icons/' + icon,
+        alignment: Alignment.center,
+      );
+    } else if (image != null) {
+      imageWidget = Image.network(image);
+    }
     return Container(
       width: width,
       padding: EdgeInsets.all(padding),
@@ -23,10 +34,7 @@ class IconCircleBackground extends StatelessWidget {
         shape: BoxShape.circle,
         color: color,
       ),
-      child: Image.asset(
-        'assets/icons/' + icon,
-        alignment: Alignment.center,
-      ),
+      child: imageWidget,
     );
   }
 }

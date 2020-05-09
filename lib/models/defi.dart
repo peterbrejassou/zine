@@ -4,7 +4,7 @@ class Defi {
   final String id;
   final String title;
   final String description;
-  final int category;
+  final String category;
   final int nbParticipants;
   final List<Step> steps;
 

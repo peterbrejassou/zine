@@ -52,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Text(
                 "Bienvenue !",
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.headline1,
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
               CustomTextField(

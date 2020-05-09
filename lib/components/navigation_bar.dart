@@ -13,7 +13,6 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
 
   void _onItemTapped(int index) {
     setState(() {
-      print("Index: " + index.toString());
       _selectedIndex = index;
     });
     Navigator.pushReplacementNamed(context, bottomBarItems[_selectedIndex]);

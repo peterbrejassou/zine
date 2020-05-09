@@ -1,11 +1,12 @@
-export 'add_defi.dart';
+export 'add_defi/add_defi_step1.dart';
+export 'add_defi/add_defi_step2.dart';
 export 'article.dart';
 export 'defi_details.dart';
 export 'friends.dart';
 export 'game.dart';
 export 'home.dart';
-export 'login.dart';
+export 'auth/login.dart';
 export 'news.dart';
 export 'profile.dart';
-export 'register.dart';
-export 'reset_password.dart';
+export 'auth/register.dart';
+export 'auth/reset_password.dart';

@@ -13,7 +13,7 @@ class ZineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        StreamProvider<FirebaseUser>.value(value: AuthService().user),
+        StreamProvider<FirebaseUser>.value(value: AuthService().streamUser),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -22,7 +22,8 @@ class ZineApp extends StatelessWidget {
           '/register': (context) => RegisterPage(),
           '/reset-password': (context) => ResetPasswordPage(),
           '/home': (context) => HomePage(),
-          '/add-defi': (context) => AddDefi(),
+          '/add-defi-step1': (context) => AddDefiStep1(),
+          '/add-defi-step2': (context) => AddDefiStep2(),
           '/defi-details': (context) => DefiDetails(),
           '/news': (context) => NewsPage(),
           '/article': (context) => ArticlePage(),

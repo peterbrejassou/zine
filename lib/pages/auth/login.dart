@@ -9,7 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  AuthService _auth = AuthService();
   TextEditingController _email;
   TextEditingController _password;
 
@@ -20,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
     _email = TextEditingController();
     _password = TextEditingController();
 
-    _auth.getUser.then(
+    AuthService().getUser.then(
       (user) {
         if (user != null) {
           Navigator.pushReplacementNamed(context, '/home');
@@ -66,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                 callback: () async {
-                  var user = await _auth.signIn(_email.text, _password.text);
+                  var user =
+                      await AuthService().signIn(_email.text, _password.text);
                   if (user != null) {
                     Navigator.pushReplacementNamed(context, '/home');
                   }
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextSpan(text: 'Pas encore de compte ? '),
                   TextSpan(
                       text: 'Inscrivez-vous ! ',
-                      style: Theme.of(context).textTheme.body2),
+                      style: Theme.of(context).textTheme.bodyText2),
                 ],
               ),
               textAlign: TextAlign.center,

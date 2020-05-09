@@ -14,7 +14,6 @@ class _ArticlesListState extends State<ArticlesList> {
   @override
   Widget build(BuildContext context) {
     final articles = Provider.of<List<Article>>(context);
-    print(articles[0].title);
 
     /*  return ListView.builder(
       itemCount: articles.length,

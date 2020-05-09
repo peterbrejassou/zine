@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/models/_models.dart';
 import 'package:zine/services/_services.dart';
 import 'package:zine/theme/constants.dart';
-import 'package:provider/provider.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -25,7 +23,7 @@ class _NewsPageState extends State<NewsPage>
      * FIRST TAB
      */
     FutureBuilder(
-      future: Globals.articelsRef.getData(),
+      future: ArticleService().getData(),
       builder: (BuildContext context, AsyncSnapshot snap) {
         if (!snap.hasData) {
           return ZineLoader();

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/models/_models.dart';
@@ -13,29 +12,29 @@ class HomePage extends StatelessWidget {
       appBar: ZineAppBar(),
       backgroundColor: backgroundTheme,
       body: Container(
-        padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               "Habitudes du moment",
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline1,
             ),
             Padding(padding: EdgeInsets.only(top: 45)),
             FutureBuilder(
-              future: Globals.defisRef.getDataByUser(),
-              builder: (BuildContext context, AsyncSnapshot snap) {
-                if (!snap.hasData) {
+              future: UserService().getDefis(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) {
                   return ZineLoader();
                 }
-                List<Defi> defis = snap.data;
+                List<dynamic> defis = snapshot.data;
                 return Container(
-                  height: 50,
+                  height: MediaQuery.of(context).size.height - 282,
                   child: ListView.separated(
                     itemCount: defis.length,
                     itemBuilder: (BuildContext context, int index) {
-                      //Defi defi = defis[index];
-                      return CardDefi();
+                      Defi defi = defis[index];
+                      return HomeCardDefi(defi: defi);
                     },
                     separatorBuilder: (BuildContext context, int index) =>
                         Padding(
@@ -50,7 +49,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, '/add-defi');
+          Navigator.pushNamed(context, '/add-defi-step1');
         },
         label: Text(
           'Ajouter un défi'.toUpperCase(),
