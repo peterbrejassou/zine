@@ -9,7 +9,18 @@ class UserService {
 
   Future<List<dynamic>> getDefis() async {
     FirebaseUser user = await AuthService().getUser;
-    var userObject = await collectionReference.document(user.uid).get();
-    return userObject.data['defis'].map((defi) => Defi.fromMap(defi)).toList();
+    var defisUser = await collectionReference
+        .document(user.uid)
+        .collection('defis')
+        .getDocuments();
+    return defisUser.documents.map((defi) => print(defi.data));
+  }
+
+  void addDefi(Defi defi) async {
+    FirebaseUser user = await AuthService().getUser;
+    await collectionReference
+        .document(user.uid)
+        .collection('defis')
+        .add(defi.toMap());
   }
 }

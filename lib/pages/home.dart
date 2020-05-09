@@ -25,7 +25,9 @@ class HomePage extends StatelessWidget {
               future: UserService().getDefis(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
-                  return ZineLoader();
+                  return Center(
+                    child: Text("Aucun défi en cours..."),
+                  );
                 }
                 List<dynamic> defis = snapshot.data;
                 return Container(
@@ -34,6 +36,8 @@ class HomePage extends StatelessWidget {
                     itemCount: defis.length,
                     itemBuilder: (BuildContext context, int index) {
                       Defi defi = defis[index];
+                      print("in home page");
+                      print(defi);
                       return HomeCardDefi(defi: defi);
                     },
                     separatorBuilder: (BuildContext context, int index) =>

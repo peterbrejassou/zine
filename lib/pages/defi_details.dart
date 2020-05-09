@@ -3,12 +3,18 @@ import 'package:zine/components/appbar.dart';
 import 'package:zine/components/button.dart';
 import 'package:zine/components/navigation_bar.dart';
 import 'package:zine/models/defi.dart';
+import 'package:zine/services/database/user_service.dart';
 import 'package:zine/theme/constants.dart';
 import 'package:zine/theme/theme.dart';
 import 'dart:math' as math;
 import 'package:share/share.dart';
 
-class DefiDetails extends StatelessWidget {
+class DefiDetails extends StatefulWidget {
+  @override
+  _DefiDetailsState createState() => _DefiDetailsState();
+}
+
+class _DefiDetailsState extends State<DefiDetails> {
   @override
   Widget build(BuildContext context) {
     var arguments = ModalRoute.of(context).settings.arguments as Map;
@@ -153,7 +159,7 @@ Widget _buildConditionNewDefi(bool newDefi, Defi defi, BuildContext context) {
       child: CustomButton(
           text: "Faire ma part",
           callback: () {
-            print("faire la part");
+            UserService().addDefi(defi);
           }),
     );
   } else {

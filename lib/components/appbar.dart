@@ -40,17 +40,34 @@ class ZineAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             ),
-            Column(
-              children: <Widget>[
-                Text(
-                  "Niveau 1",
-                  style: CustomTextStyle.bold18(context),
-                ),
-                Text(
-                  "350 pts",
-                  style: CustomTextStyle.green20(context),
-                ),
-              ],
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/associations');
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    "Niveau 1",
+                    style: CustomTextStyle.bold18(context),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "350",
+                        style: CustomTextStyle.bold20green(context),
+                      ),
+                      Padding(padding: EdgeInsets.only(left: 5)),
+                      Image.asset(
+                        "assets/icons/drop.png",
+                        height: 15,
+                        color: greenZine,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

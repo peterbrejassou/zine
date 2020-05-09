@@ -22,8 +22,8 @@ class _NewsPageState extends State<NewsPage>
     /* 
      * FIRST TAB
      */
-    FutureBuilder(
-      future: ArticleService().getData(),
+    StreamBuilder(
+      stream: ArticleService().streamData(),
       builder: (BuildContext context, AsyncSnapshot snap) {
         if (!snap.hasData) {
           return ZineLoader();

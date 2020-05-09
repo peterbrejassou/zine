@@ -13,10 +13,19 @@ class Step {
 
   factory Step.fromMap(Map data) {
     return Step(
-      number: data['number'] ?? '',
+      number: data['number'] ?? null,
       description: data['description'] ?? '',
       points: data['points'] ?? 0,
       achieved: data['achieved'] ?? false,
     );
+  }
+
+  toMap(Step step) {
+    return {
+      'number': step.number ?? null,
+      'description': step.description ?? '',
+      'points': step.points ?? 0,
+      'achieved': step.achieved ?? false,
+    };
   }
 }

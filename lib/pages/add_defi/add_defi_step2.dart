@@ -10,7 +10,7 @@ class AddDefiStep2 extends StatelessWidget {
   Widget build(BuildContext context) {
     Category category = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: ZineAppBar(),
+        appBar: ZineAppBar(),
       backgroundColor: backgroundTheme,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),

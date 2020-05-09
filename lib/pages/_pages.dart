@@ -1,7 +1,10 @@
 export 'add_defi/add_defi_step1.dart';
 export 'add_defi/add_defi_step2.dart';
-export 'article.dart';
+export 'article_details.dart';
+export 'associations.dart';
+export 'association_details.dart';
 export 'defi_details.dart';
+export 'donate.dart';
 export 'friends.dart';
 export 'game.dart';
 export 'home.dart';

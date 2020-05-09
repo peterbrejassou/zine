@@ -18,8 +18,7 @@ class AddDefiStep1 extends StatelessWidget {
           children: <Widget>[
             ZineAppBar(),
             Expanded(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+              child: ZineContainer(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

@@ -27,4 +27,19 @@ class Defi {
         steps:
             (data['steps'] as List ?? []).map((v) => Step.fromMap(v)).toList());
   }
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> stepsMap = {};
+    this.steps.forEach((step) {
+      stepsMap.putIfAbsent(step.number.toString(), () => step.toMap(step));
+    });
+    return {
+      'id': this.id ?? '',
+      'title': this.title ?? '',
+      'description': this.description ?? '',
+      'category': this.category ?? '',
+      'nbParticipants': this.nbParticipants ?? 0,
+      'steps': stepsMap
+    };
+  }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CustomWidget extends StatelessWidget {
+class ZineContainer extends StatelessWidget {
   final Widget child;
 
-  const CustomWidget({
+  const ZineContainer({
     Key key,
     this.child,
   }) : super(key: key);
@@ -11,10 +11,7 @@ class CustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-        vertical: 20,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: Container(
         child: child,
       ),

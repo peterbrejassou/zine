@@ -39,6 +39,14 @@ class CustomTextStyle {
         );
   }
 
+  static TextStyle bold15green(BuildContext context) {
+    return Theme.of(context).textTheme.bodyText1.copyWith(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: greenZine,
+        );
+  }
+
   static TextStyle bold16(BuildContext context) {
     return Theme.of(context).textTheme.bodyText1.copyWith(
           fontSize: 16,
@@ -79,6 +87,12 @@ class CustomTextStyle {
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: greenZine,
+        );
+  }
+
+  static TextStyle regular12(BuildContext context) {
+    return Theme.of(context).textTheme.bodyText1.copyWith(
+          fontSize: 12,
         );
   }
 
