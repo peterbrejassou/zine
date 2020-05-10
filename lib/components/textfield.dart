@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zine/theme/theme.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -18,14 +19,18 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(field),
+        Text(
+          field,
+          style: CustomTextStyle.regular15(context),
+        ),
         Padding(padding: EdgeInsets.only(top: 8)),
         TextField(
+          style: CustomTextStyle.regular15(context),
           controller: controller,
           keyboardType: type,
           obscureText: obscure,
           decoration: InputDecoration(
-            isDense: true,
+            isDense: false,
             contentPadding: EdgeInsets.all(10),
             border: OutlineInputBorder(),
           ),

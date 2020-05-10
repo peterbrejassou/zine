@@ -1,24 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:zine/theme/constants.dart';
+import 'package:zine/theme/theme.dart';
 
-class CustomButton extends FlatButton {
-  CustomButton(
-      {@required String text,
-      @required VoidCallback callback,
-      Color backgroundColor: greenZine,
-      Color textColor: Colors.white,
-      Color borderColor: greenZine,
-      Image logo})
-      : super(
-          shape: StadiumBorder(
-            side: BorderSide(color: borderColor, width: 1),
-          ),
-          color: backgroundColor,
-          textColor: textColor,
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-          onPressed: callback,
-          child: Text(text.toUpperCase()),
-        );
+class CustomButton extends StatelessWidget {
+  final String label;
+  final VoidCallback callback;
+  final Color backgroundColor;
+  final Color textColor;
+  final Color borderColor;
+
+  const CustomButton({
+    Key key,
+    @required this.label,
+    @required this.callback,
+    this.backgroundColor: greenZine,
+    this.textColor: whiteZine,
+    this.borderColor: greenZine,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      shape: StadiumBorder(
+        side: BorderSide(color: borderColor, width: 1),
+      ),
+      color: backgroundColor,
+      textColor: textColor,
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+      onPressed: callback,
+      child: Text(
+        label.toUpperCase(),
+        style: CustomTextStyle.bold15(context),
+      ),
+    );
+  }
 }
 
 class CustomButtonIcon extends StatelessWidget {
@@ -42,7 +57,10 @@ class CustomButtonIcon extends StatelessWidget {
     return FlatButton.icon(
       onPressed: callback,
       icon: icon,
-      label: Text(label),
+      label: Text(
+        label,
+        style: CustomTextStyle.bold15(context),
+      ),
       color: backgroundColor,
       textColor: textColor,
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),

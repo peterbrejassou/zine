@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:zine/pages/_pages.dart';
 
 // BottomBar Items
-Map<int, String> bottomBarItems = {
-  0: "/home",
-  1: "/news",
-  2: "/game",
-  3: "/friends"
-};
+final List<Widget> navPageItems = [
+  HomePage(),
+  NewsPage(),
+  GamePage(),
+  FriendsPage(),
+];
 
 // Material Colors
 Map<int, Color> color = {
@@ -27,4 +28,10 @@ MaterialColor greenZineMaterial = MaterialColor(0xFF4FB286, color);
 const Color backgroundTheme = const Color(0xFF000000);
 const Color greenZine = const Color(0xFF4FB286);
 const Color grayZine = const Color(0xFF626262);
+const Color grayLightZine = const Color(0xFF828282);
 const Color redZine = const Color(0xFFB24F4F);
+const Color whiteZine = const Color(0xFFB24F4F);
+const Color blueOcean = const Color(0xFF4C908F);
+const Color yellowDrought = const Color(0xFF908A4C);
+const Color blueClimate = const Color(0xFF4C6B90);
+const Color redOzone = const Color(0xFF904C4C);

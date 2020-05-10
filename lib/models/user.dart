@@ -12,4 +12,14 @@ class User {
     this.level,
     this.points,
   });
+
+  factory User.fromMap(Map data) {
+    return User(
+      uid: data['uid'] ?? '',
+      username: data['username'] ?? '',
+      email: data['email'] ?? '',
+      level: data['level'] ?? 1,
+      points: data['points'] ?? 0,
+    );
+  }
 }

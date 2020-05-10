@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zine/components/appbar.dart';
 import 'package:zine/components/button.dart';
-import 'package:zine/components/navigation_bar.dart';
 import 'package:zine/models/defi.dart';
 import 'package:zine/services/database/user_service.dart';
 import 'package:zine/theme/constants.dart';
@@ -25,130 +23,124 @@ class _DefiDetailsState extends State<DefiDetails> {
     defi.steps.forEach((step) {
       totalPointsDefi += step.points;
     });
-    return Scaffold(
-      appBar: ZineAppBar(),
-      backgroundColor: backgroundTheme,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              defi.title,
-              style: CustomTextStyle.regular25(context),
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            defi.title,
+            style: CustomTextStyle.regular25(context),
+          ),
+          Padding(padding: EdgeInsets.only(top: 5)),
+          Container(
+            height: 5,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: greenZine,
             ),
-            Padding(padding: EdgeInsets.only(top: 5)),
-            Container(
-              height: 5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: greenZine,
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 30)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("assets/icons/hummingbird.png", width: 47),
-                Padding(padding: EdgeInsets.only(left: 85)),
-                Image.asset("assets/icons/drop.png", width: 27),
-              ],
-            ),
-            Padding(padding: EdgeInsets.only(top: 10)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      defi.nbParticipants.toString(),
-                      style: CustomTextStyle.bold19(context),
-                    ),
-                    Text(
-                      "participants",
-                      style: CustomTextStyle.regular15(context),
-                    ),
-                  ],
-                ),
-                Padding(padding: EdgeInsets.only(left: 60)),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      totalPointsDefi.toString(),
-                      style: CustomTextStyle.bold19(context),
-                    ),
-                    Text(
-                      "gouttes",
-                      style: CustomTextStyle.regular15(context),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(padding: EdgeInsets.only(top: 25)),
-            _buildConditionNewDefi(newDefi, defi, context),
-            Padding(padding: EdgeInsets.only(top: 35)),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          Padding(padding: EdgeInsets.only(top: 30)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset("assets/icons/hummingbird.png", width: 47),
+              Padding(padding: EdgeInsets.only(left: 85)),
+              Image.asset("assets/icons/drop.png", width: 27),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.alarm,
-                        size: 25,
-                      ),
-                      Padding(padding: EdgeInsets.only(left: 15)),
-                      Text(
-                        "Pas de rappel défini",
-                        style: CustomTextStyle.regular15(context),
-                      ),
-                    ],
+                  Text(
+                    defi.nbParticipants.toString(),
+                    style: CustomTextStyle.bold19(context),
                   ),
-                  Transform.rotate(
-                    angle: 180 * math.pi / 180,
-                    child:
-                        Icon(Icons.arrow_back_ios, size: 20, color: grayZine),
+                  Text(
+                    "participants",
+                    style: CustomTextStyle.regular15(context),
                   ),
                 ],
               ),
+              Padding(padding: EdgeInsets.only(left: 60)),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    totalPointsDefi.toString(),
+                    style: CustomTextStyle.bold19(context),
+                  ),
+                  Text(
+                    "gouttes",
+                    style: CustomTextStyle.regular15(context),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(top: 25)),
+          _buildConditionNewDefi(newDefi, defi, context),
+          Padding(padding: EdgeInsets.only(top: 35)),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(10),
             ),
-            Padding(padding: EdgeInsets.only(top: 30)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  "Pourquoi le faire ?",
-                  style: CustomTextStyle.bold17(context),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.alarm,
+                      size: 25,
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 15)),
+                    Text(
+                      "Pas de rappel défini",
+                      style: CustomTextStyle.regular15(context),
+                    ),
+                  ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 5)),
-                Text(
-                  defi.description,
-                  style: CustomTextStyle.regular15gray(context),
+                Transform.rotate(
+                  angle: 180 * math.pi / 180,
+                  child: Icon(Icons.arrow_back_ios, size: 20, color: grayZine),
                 ),
               ],
             ),
-            Padding(padding: EdgeInsets.only(top: 25)),
-            Center(
-              child: CustomButton(
-                text: "Annuler",
-                callback: () {},
-                backgroundColor: Colors.transparent,
-                textColor: redZine,
-                borderColor: redZine,
+          ),
+          Padding(padding: EdgeInsets.only(top: 30)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Pourquoi le faire ?",
+                style: CustomTextStyle.bold17(context),
               ),
+              Padding(padding: EdgeInsets.only(top: 5)),
+              Text(
+                defi.description,
+                style: CustomTextStyle.regular15gray(context),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(top: 25)),
+          Center(
+            child: CustomButton(
+              label: "Annuler",
+              callback: () {},
+              backgroundColor: Colors.transparent,
+              textColor: redZine,
+              borderColor: redZine,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }
 }
@@ -157,7 +149,7 @@ Widget _buildConditionNewDefi(bool newDefi, Defi defi, BuildContext context) {
   if (newDefi == true) {
     return Center(
       child: CustomButton(
-          text: "Faire ma part",
+          label: "Faire ma part",
           callback: () {
             UserService().addDefi(defi);
           }),

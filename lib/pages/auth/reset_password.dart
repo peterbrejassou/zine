@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/theme/constants.dart';
+import 'package:zine/theme/theme.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -28,15 +29,37 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       backgroundColor: backgroundTheme,
       body: Container(
         margin: EdgeInsets.only(top: 25),
-        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                'assets/logo_zine.png',
-                width: 180,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Positioned(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 25,
+                          color: grayLightZine,
+                        ),
+                      ),
+                      top: 30,
+                      left: 0,
+                    ),
+                    Image.asset(
+                      'assets/logo_zine.png',
+                      width: 180,
+                    ),
+                  ],
+                ),
               ),
               Text(
                 'Mot de passe oublié',
@@ -44,14 +67,15 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
               Text(
-                'Saisissez votre adresse mail ci-dessous,\nvous recevrez les instructions pour réinitialiser votre mot de passe.',
+                'Saisissez votre adresse mail ci-dessous, vous recevrez les instructions pour réinitialiser votre mot de passe.',
+                style: CustomTextStyle.regular15(context),
               ),
               Padding(padding: EdgeInsets.only(top: 40)),
               CustomTextField(controller: _email, field: "Adresse email"),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
-                callback: null,
-                text: "Envoyer",
+                callback: () {},
+                label: "Envoyer",
               ),
             ],
           ),

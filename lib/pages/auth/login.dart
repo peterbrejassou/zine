@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/services/_services.dart';
 import 'package:zine/theme/constants.dart';
+import 'package:zine/theme/theme.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -62,16 +63,31 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _password,
                 obscure: true,
               ),
+              Padding(padding: EdgeInsets.only(top: 15)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/reset-password');
+                    },
+                    child: Text(
+                      "Mot de passe oublié ?",
+                      style: CustomTextStyle.regular13grayunderline(context),
+                    ),
+                  ),
+                ],
+              ),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                 callback: () async {
                   var user =
                       await AuthService().signIn(_email.text, _password.text);
                   if (user != null) {
-                    Navigator.pushReplacementNamed(context, '/home');
+                    //Navigator.pushReplacementNamed(context, '/home');
                   }
                 },
-                text: "Connexion",
+                label: "Connexion",
               ),
             ],
           ),

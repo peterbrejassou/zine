@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/models/_models.dart';
 import 'package:zine/services/_services.dart';
-import 'package:zine/theme/constants.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -43,7 +42,9 @@ class _NewsPageState extends State<NewsPage>
      * SECOND TAB
      */
     SingleChildScrollView(
-      child: Text("Page de statistiques"),
+      child: Center(
+        child: Text("Page de statistiques"),
+      ),
     ),
   ];
 
@@ -61,22 +62,17 @@ class _NewsPageState extends State<NewsPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ZineAppBar(),
-      backgroundColor: backgroundTheme,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Padding(padding: EdgeInsets.only(top: 3)),
-            CustomTabBar(
-              tabController: _tabController,
-              tabs: tabs,
-              tabviews: tabviews,
-            )
-          ],
-        ),
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Padding(padding: EdgeInsets.only(top: 3)),
+          CustomTabBar(
+            tabController: _tabController,
+            tabs: tabs,
+            tabviews: tabviews,
+          )
+        ],
       ),
-      bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }
 }

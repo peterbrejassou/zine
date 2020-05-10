@@ -16,6 +16,12 @@ class UserService {
     return defisUser.documents.map((defi) => print(defi.data));
   }
 
+  Future<User> getUserDetails() async {
+    FirebaseUser user = await AuthService().getUser;
+    var detailsUser = await collectionReference.document(user.uid).get();
+    return User.fromMap(detailsUser.data);
+  }
+
   void addDefi(Defi defi) async {
     FirebaseUser user = await AuthService().getUser;
     await collectionReference

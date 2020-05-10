@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ZineAppBar(),
       backgroundColor: backgroundTheme,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -53,7 +52,8 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, '/add-defi-step1');
+          //Navigator.pushNamed(context, '/add-defi-step1');
+          AuthService().signOut();
         },
         label: Text(
           'Ajouter un défi'.toUpperCase(),
@@ -62,7 +62,6 @@ class HomePage extends StatelessWidget {
         backgroundColor: greenZine,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      bottomNavigationBar: ZineBottomNavigationBar(),
     );
   }
 }

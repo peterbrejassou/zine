@@ -46,9 +46,31 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                "assets/logo_zine.png",
-                width: 180,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Positioned(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 25,
+                          color: grayLightZine,
+                        ),
+                      ),
+                      top: 30,
+                      left: 0,
+                    ),
+                    Image.asset(
+                      'assets/logo_zine.png',
+                      width: 180,
+                    ),
+                  ],
+                ),
               ),
               Text(
                 "Bienvenue !",
@@ -88,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Navigator.pushReplacementNamed(context, '/');
                   }
                 },
-                text: "Inscription",
+                label: "Inscription",
               ),
             ],
           ),
