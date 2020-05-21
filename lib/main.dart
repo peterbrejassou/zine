@@ -1,95 +1,75 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:zine/components/_components.dart';
-import 'package:zine/pages/news.dart';
-import 'package:zine/theme/constants.dart';
-import 'package:zine/theme/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zine/services/_services.dart';
 import 'package:zine/pages/_pages.dart';
+import 'package:zine/components/_components.dart';
+import 'package:zine/theme.dart';
 
 void main() => runApp(ZineApp());
 
-class ZineApp extends StatefulWidget {
+class ZineApp extends StatelessWidget {
   @override
-  _ZineAppState createState() => _ZineAppState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<ThemeChanger>(
+      create: (BuildContext context) {
+        return ThemeChanger(ThemeData.dark());
+      },
+      child: ChangeNotifierProvider<BodyChanger>(
+        create: (BuildContext context) {
+          return BodyChanger(HomePage());
+        },
+        child: MaterialAppWithTheme(),
+      ),
+    );
+  }
 }
 
-class _ZineAppState extends State<ZineApp> {
-  int _selectedIndex = 0;
+class MaterialAppWithTheme extends StatefulWidget {
+  @override
+  _MaterialAppWithThemeState createState() => _MaterialAppWithThemeState();
+}
 
-  Widget handleAuthentification() {
+class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  /**
+   * Permet de vérifier si l'utilisateur est connecté ou non et rediriger soit vers la page de login, soit vers la page home
+   */
+  Widget handleAuthentification(context) {
+    final body = Provider.of<BodyChanger>(context);
+
     return StreamBuilder<FirebaseUser>(
       stream: AuthService().streamUser,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return (!snapshot.hasData) ? LoginPage() : buildMainScreen();
+        return (!snapshot.hasData)
+            ? LoginPage()
+            : Scaffold(
+                key: scaffoldKey,
+                appBar: ZineAppBar(),
+                body: body.getBody(),
+                bottomNavigationBar: ZineBottomNavigationBar(),
+              );
       },
-    );
-  }
-
-  Widget buildMainScreen() {
-    return Scaffold(
-      appBar: ZineAppBar(),
-      backgroundColor: backgroundTheme,
-      body: navPageItems[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: backgroundTheme,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        selectedItemColor: greenZine,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.checkSquare),
-            title: Text("Home"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.newspaper),
-            title: Text("News"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.gamepad),
-            title: Text("Game"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.globe),
-            title: Text("Friends"),
-          ),
-        ],
-      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Zine',
+      theme: buildThemeData(theme.getTheme()),
       routes: {
+        '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/reset-password': (context) => ResetPasswordPage(),
-        '/home': (context) => HomePage(),
-        '/add-defi-step1': (context) => AddDefiStep1(),
-        '/add-defi-step2': (context) => AddDefiStep2(),
-        '/defi-details': (context) => DefiDetails(),
-        '/news': (context) => NewsPage(),
-        '/article': (context) => ArticlePage(),
-        '/game': (context) => GamePage(),
-        '/boutique': (context) => BoutiquePage(),
-        '/friends': (context) => FriendsPage(),
         '/profile': (context) => ProfilePage(),
-        '/associations': (context) => AssociationsPage(),
-        '/association-details': (context) => AssociationDetailsPage(),
-        '/donate': (context) => DonatePage(),
+        '/changetheme': (context) => ThemeChangerPage(),
       },
-      theme: buildThemeData(),
-      home: handleAuthentification(),
+      home: handleAuthentification(context),
     );
   }
 }
