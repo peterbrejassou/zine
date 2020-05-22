@@ -7,6 +7,26 @@ class DefiService {
   CollectionReference collectionReference =
       Firestore.instance.collection('defis');
 
+  void addUserFromDefi(defiId) async {
+    FirebaseUser user = await AuthService().getUser;
+    DocumentSnapshot doc = await collectionReference.document(defiId).get();
+    List<dynamic> defiUsers = doc.data['users'];
+
+    collectionReference.document(defiId).updateData({
+      "users": FieldValue.arrayUnion([user.uid])
+    });
+  }
+
+  void removeUserFromDefi(defiId) async {
+    FirebaseUser user = await AuthService().getUser;
+    DocumentSnapshot doc = await collectionReference.document(defiId).get();
+    List<dynamic> defiUsers = doc.data['users'];
+
+    collectionReference.document(defiId).updateData({
+      "users": FieldValue.arrayRemove([user.uid])
+    });
+  }
+
   Future<Defi> getOneData(String defiId) async {
     var doc = await collectionReference.document(defiId).get();
     return Defi.fromMap(doc.data);
@@ -22,6 +42,22 @@ class DefiService {
         .where('category', isEqualTo: categoryId)
         .getDocuments();
     return snapshots.documents.map((doc) => Defi.fromMap(doc.data)).toList();
+  }
+
+  Future<List<Defi>> getDefisOfCategoryExceptUserDefis(
+      String categoryId) async {
+    FirebaseUser user = await AuthService().getUser;
+    var defisNotUser = [];
+    var snapshots = await collectionReference
+        .where('category', isEqualTo: categoryId)
+        .getDocuments();
+    snapshots.documents.forEach((doc) {
+      if (!doc.data['users'].contains(user.uid)) {
+        defisNotUser.add(doc);
+      }
+    });
+
+    return defisNotUser.map((doc) => Defi.fromMap(doc.data)).toList();
   }
 
   Future<List<Defi>> getDefisOfUser() async {
@@ -44,12 +80,4 @@ class DefiService {
         .map((list) =>
             list.documents.map((doc) => Defi.fromMap(doc.data)).toList());
   }
-
-  /* Stream<List<Defi>> streamDefisOfUser(userUid) {
-    return collectionReference
-        .where('users', arrayContains: userUid)
-        .snapshots()
-        .map((list) =>
-            list.documents.map((doc) => Defi.fromMap(doc.data)).toList());
-  } */
 }

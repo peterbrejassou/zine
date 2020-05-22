@@ -1,31 +1,33 @@
-import 'package:zine/models/step.dart';
+import 'package:zine/models/StepDefi.dart';
 
 class Defi {
   final String id;
   final String title;
   final String description;
   final String category;
-  final int nbParticipants;
-  final List<Step> steps;
+  final List<StepDefi> steps;
+  final List<dynamic> users;
 
   Defi({
     this.id,
     this.title,
     this.description,
     this.category,
-    this.nbParticipants,
     this.steps,
+    this.users,
   });
 
   factory Defi.fromMap(Map data) {
     return Defi(
-        id: data['id'] ?? '',
-        title: data['title'] ?? '',
-        description: data['description'] ?? '',
-        category: data['category'] ?? 'Aucune catégorie',
-        nbParticipants: data['nbParticipants'] ?? 0,
-        steps:
-            (data['steps'] as List ?? []).map((v) => Step.fromMap(v)).toList());
+      id: data['id'] ?? '',
+      title: data['title'] ?? '',
+      description: data['description'] ?? '',
+      category: data['category'] ?? 'Aucune catégorie',
+      steps: (data['steps'] as List ?? [])
+          .map((like) => StepDefi.fromMap(like))
+          .toList(),
+      users: (data['users'] as List ?? []).map((user) => user).toList(),
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -38,7 +40,6 @@ class Defi {
       'title': this.title ?? '',
       'description': this.description ?? '',
       'category': this.category ?? '',
-      'nbParticipants': this.nbParticipants ?? 0,
       'steps': stepsMap
     };
   }

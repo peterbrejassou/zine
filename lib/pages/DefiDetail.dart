@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
+import 'package:zine/components/StepComponent.dart';
 import 'package:zine/constants.dart';
-import 'package:zine/models/Defi.dart';
+import 'package:zine/models/_models.dart';
+import 'package:zine/services/database/DefiService.dart';
 import 'package:zine/theme.dart';
-import 'dart:math' as math;
 import 'package:share/share.dart';
 
 class DefiDetails extends StatefulWidget {
@@ -17,12 +18,61 @@ class DefiDetails extends StatefulWidget {
 }
 
 class _DefiDetailsState extends State<DefiDetails> {
+  var newDefi;
+
+  @override
+  void initState() {
+    super.initState();
+    newDefi = widget.newDefi;
+  }
+
   @override
   Widget build(BuildContext context) {
     int totalPointsDefi = 0;
     widget.defi.steps.forEach((step) {
       totalPointsDefi += step.points;
     });
+    Widget IsNewDefi;
+    if (newDefi == true) {
+      IsNewDefi = Center(
+        child: ZineButton(
+          label: "Faire ma part",
+          callback: () {
+            DefiService().addUserFromDefi(widget.defi.id);
+            setState(() {
+              newDefi = false;
+            });
+          },
+        ),
+      );
+    } else {
+      IsNewDefi = Column(
+        children: <Widget>[
+          Center(
+            child: Text(
+              "Tu fais ta part bravo !",
+              style: ZineTextStyle.regular15green(context),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(top: 15)),
+          Center(
+            child: ZineButtonIcon(
+              label: "Partager",
+              icon: Icon(Icons.share),
+              callback: () {
+                Share.share('Je réalise le défi "' +
+                    widget.defi.title +
+                    '". Viens me rejoindre sur Zine !');
+              },
+              backgroundColor: Colors.transparent,
+              textColor: greenZine,
+            ),
+          ),
+        ],
+      );
+    }
+
     return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
       child: Column(
@@ -57,13 +107,19 @@ class _DefiDetailsState extends State<DefiDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    widget.defi.nbParticipants.toString(),
+                    widget.defi.users.length.toString(),
                     style: ZineTextStyle.bold19(context),
                   ),
-                  Text(
-                    "participants",
-                    style: ZineTextStyle.regular15(context),
-                  ),
+                  if (widget.defi.users.length == 1)
+                    Text(
+                      "participant",
+                      style: ZineTextStyle.regular15(context),
+                    ),
+                  if (widget.defi.users.length != 1)
+                    Text(
+                      "participants",
+                      style: ZineTextStyle.regular15(context),
+                    ),
                 ],
               ),
               Padding(padding: EdgeInsets.only(left: 60)),
@@ -83,37 +139,9 @@ class _DefiDetailsState extends State<DefiDetails> {
             ],
           ),
           Padding(padding: EdgeInsets.only(top: 25)),
-          _buildConditionNewDefi(widget.newDefi, widget.defi, context),
+          IsNewDefi,
           Padding(padding: EdgeInsets.only(top: 35)),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.alarm,
-                      size: 25,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 15)),
-                    Text(
-                      "Pas de rappel défini",
-                      style: ZineTextStyle.regular15(context),
-                    ),
-                  ],
-                ),
-                Transform.rotate(
-                  angle: 180 * math.pi / 180,
-                  child: Icon(Icons.arrow_back_ios, size: 20, color: grayZine),
-                ),
-              ],
-            ),
-          ),
+          if (!newDefi) Reminder(),
           Padding(padding: EdgeInsets.only(top: 30)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,10 +158,39 @@ class _DefiDetailsState extends State<DefiDetails> {
             ],
           ),
           Padding(padding: EdgeInsets.only(top: 25)),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Étapes",
+                  style: ZineTextStyle.bold17(context),
+                ),
+                Padding(padding: EdgeInsets.only(top: 5)),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: widget.defi.steps.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      StepDefi step = widget.defi.steps[index];
+                      print(step);
+                      return StepComponent(step: step);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
           Center(
             child: ZineButton(
               label: "Annuler",
-              callback: () {},
+              callback: () {
+                DefiService().removeUserFromDefi(widget.defi.id);
+                setState(() {
+                  newDefi = true;
+                });
+              },
               backgroundColor: Colors.transparent,
               textColor: redZine,
               borderColor: redZine,
@@ -141,44 +198,6 @@ class _DefiDetailsState extends State<DefiDetails> {
           ),
         ],
       ),
-    );
-  }
-}
-
-Widget _buildConditionNewDefi(bool newDefi, Defi defi, BuildContext context) {
-  if (newDefi == true) {
-    return Center(
-      child: ZineButton(
-          label: "Faire ma part",
-          callback: () {
-            //UserService().addDefi(defi);
-          }),
-    );
-  } else {
-    return Column(
-      children: <Widget>[
-        Center(
-          child: Text(
-            "Tu fais ta part bravo !",
-            style: ZineTextStyle.regular15green(context),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        Padding(padding: EdgeInsets.only(top: 15)),
-        Center(
-          child: ZineButtonIcon(
-            label: "Partager",
-            icon: Icon(Icons.share),
-            callback: () {
-              Share.share('Je réalise le défi "' +
-                  defi.title +
-                  '". Viens me rejoindre sur Zine !');
-            },
-            backgroundColor: Colors.transparent,
-            textColor: greenZine,
-          ),
-        ),
-      ],
     );
   }
 }

@@ -20,6 +20,7 @@ class ArticleCard extends StatelessWidget {
     } else {
       imageWidget = Image.network(article.img ?? '', width: 85);
     }
+
     return GestureDetector(
       onTap: () {
         _bodyChanger.setBody(ArticleDetailsPage(article: article));
@@ -60,7 +61,8 @@ class ArticleCard extends StatelessWidget {
                       size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
-                    Text("3K", style: ZineTextStyle.regular15(context)),
+                    Text(article.likes.length.toString(),
+                        style: ZineTextStyle.regular15(context)),
                   ],
                 )
               ],

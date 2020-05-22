@@ -4,7 +4,7 @@ class Article {
   final String content;
   final String category;
   final String img;
-  final int likes;
+  final List<dynamic> likes;
 
   Article({
     this.id,
@@ -22,7 +22,7 @@ class Article {
       content: data['content'] ?? '',
       category: data['category'] ?? 'Aucune catégorie',
       img: data['img'] ?? '',
-      likes: data['likes'] ?? 0,
+      likes: (data['likes'] as List ?? []).map((like) => like).toList(),
     );
   }
 }

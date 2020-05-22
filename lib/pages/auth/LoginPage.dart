@@ -84,6 +84,13 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 label: "Connexion",
               ),
+              Padding(padding: EdgeInsets.only(top: 20)),
+              FlatButton(
+                child: Text("Continuer en tant qu'invité"),
+                onPressed: () async {
+                  await AuthService().signIn("john.doe@mail.fr", "johndoe");
+                },
+              ),
             ],
           ),
         ),

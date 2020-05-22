@@ -93,8 +93,15 @@ class AssociationDetailsPage extends StatelessWidget {
                 ZineButton(
                   label: "Je fais un don",
                   callback: () {},
-                  borderColor: greenZine,
+                  backgroundColor: grayZine,
+                  borderColor: grayZine,
                 ),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                Text(
+                  "Les dons ne sont pas disponibles pour le moment, ils seront activés dans une prochaine mise à jour.",
+                  style: ZineTextStyle.subphrase(context),
+                  textAlign: TextAlign.center,
+                )
               ],
             ),
           ),

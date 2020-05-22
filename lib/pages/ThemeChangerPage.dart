@@ -22,14 +22,20 @@ class ThemeChangerPage extends StatelessWidget {
             Padding(padding: EdgeInsets.only(top: 30)),
             RaisedButton(
               child: Text('Dark Theme'),
-              onPressed: () => _themeChanger.setTheme(ThemeData.dark()),
+              onPressed: () {
+                _themeChanger.setTheme(ThemeData.dark());
+                Navigator.pop(context);
+              },
               color: Colors.grey[900],
               textColor: Colors.white,
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
             RaisedButton(
               child: Text('Light Theme'),
-              onPressed: () => _themeChanger.setTheme(ThemeData.light()),
+              onPressed: () {
+                _themeChanger.setTheme(ThemeData.light());
+                Navigator.pop(context);
+              },
               color: Colors.grey[200],
               textColor: Colors.black,
             ),

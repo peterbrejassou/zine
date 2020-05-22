@@ -13,8 +13,8 @@ class AddDefiStep2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: StreamBuilder(
-        stream: DefiService().streamDefisOfCategory(category.id),
+      child: FutureBuilder(
+        future: DefiService().getDefisOfCategoryExceptUserDefis(category.id),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return ZineLoader();

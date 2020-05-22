@@ -7,10 +7,27 @@ class UserService {
   CollectionReference collectionReference =
       Firestore.instance.collection('users');
 
-  Future<User> getUserDetails() async {
-    FirebaseUser user = await AuthService().getUser;
-    var detailsUser = await collectionReference.document(user.uid).get();
+  Future<User> getUserDetails(userId) async {
+    var userUid;
+    if (!userId) {
+      FirebaseUser user = await AuthService().getUser;
+      userUid = user.uid;
+    } else {
+      userUid = userId;
+    }
+    var detailsUser = await collectionReference.document(userUid).get();
     return User.fromMap(detailsUser.data);
+  }
+
+  getFriends() async {
+    FirebaseUser user = await AuthService().getUser;
+    var friendsIdUser = await collectionReference
+        .document(user.uid)
+        .collection("friends")
+        .getDocuments();
+    return friendsIdUser.documents
+        .map((userId) => UserService().getUserDetails(userId.data))
+        .toList();
   }
 
   /* void addDefi(Defi defi) async {

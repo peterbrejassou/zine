@@ -9,7 +9,10 @@ class ShopPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("Shop page"),
+          Text(
+            "Page boutique en développement...\nDisponible dans une prochaine mise à jour.",
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

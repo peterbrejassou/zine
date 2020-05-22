@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zine/components/OptionRow.dart';
+import 'package:zine/constants.dart';
+import 'package:zine/models/User.dart';
 import 'package:zine/services/AuthService.dart';
 import 'package:zine/theme.dart';
 
@@ -15,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    User user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(top: 25),
@@ -38,12 +41,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
+              width: 100,
               height: 100,
-              child: Image.asset(
-                'assets/john_doe.png',
-                width: 100,
-                alignment: Alignment.centerLeft,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(user.photo),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 15)),
@@ -53,15 +54,31 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("John Doe", style: ZineTextStyle.regular25(context)),
-                    Text("@johndoe"),
+                    Text(user.firstname + ' ' + user.lastname,
+                        style: ZineTextStyle.regular25(context)),
+                    Text('@' + user.username),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text("Niveau 1", style: ZineTextStyle.bold18(context)),
-                    Text("350", style: ZineTextStyle.bold20green(context)),
+                    Text("Niveau " + user.level.toString(),
+                        style: ZineTextStyle.bold18(context)),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          user.points.toString(),
+                          style: ZineTextStyle.bold20green(context),
+                        ),
+                        Padding(padding: EdgeInsets.only(left: 5)),
+                        Image.asset(
+                          "assets/icons/drop.png",
+                          height: 15,
+                          color: greenZine,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],

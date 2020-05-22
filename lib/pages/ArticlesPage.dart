@@ -23,18 +23,23 @@ class _ArticlesPageState extends State<ArticlesPage>
      */
     StreamBuilder(
       stream: ArticleService().streamData(),
-      builder: (BuildContext context, AsyncSnapshot snap) {
-        if (!snap.hasData) {
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          List<Article> articles = snapshot.data;
+          return ListView.builder(
+            itemCount: articles.length,
+            itemBuilder: (BuildContext context, int index) {
+              Article article = articles[index];
+              return ArticleCard(article: article);
+            },
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
+        } else {
           return ZineLoader();
         }
-        List<Article> articles = snap.data;
-        return ListView.builder(
-          itemCount: articles.length,
-          itemBuilder: (BuildContext context, int index) {
-            Article article = articles[index];
-            return ArticleCard(article: article);
-          },
-        );
       },
     ),
 

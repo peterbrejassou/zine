@@ -19,6 +19,13 @@ ThemeData buildThemeData(brightness) {
 }
 
 class ZineTextStyle {
+  static TextStyle subphrase(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .bodyText1
+        .copyWith(fontSize: 11, fontStyle: FontStyle.italic, color: grayZine);
+  }
+
   static TextStyle green20(BuildContext context) {
     return Theme.of(context).textTheme.headline1.copyWith(color: greenZine);
   }
@@ -149,5 +156,12 @@ class ZineTextStyle {
 
   static TextStyle regular25(BuildContext context) {
     return Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 25);
+  }
+
+  static TextStyle regular25green(BuildContext context) {
+    return Theme.of(context).textTheme.bodyText1.copyWith(
+          fontSize: 25,
+          color: greenZine,
+        );
   }
 }
