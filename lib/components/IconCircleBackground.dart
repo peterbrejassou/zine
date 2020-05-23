@@ -25,7 +25,10 @@ class IconCircleBackground extends StatelessWidget {
         alignment: Alignment.center,
       );
     } else if (image != null) {
-      imageWidget = Image.network(image);
+      imageWidget = Image.network(
+        image,
+        height: 40,
+      );
     }
     return Container(
       width: width,

@@ -5,6 +5,7 @@ import 'package:zine/constants.dart';
 import 'package:zine/models/_models.dart';
 import 'package:zine/pages/DefiDetail.dart';
 import 'package:zine/services/BodyChanger.dart';
+import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/services/database/CategoryService.dart';
 import 'package:zine/theme.dart';
 
@@ -20,6 +21,9 @@ class _HomeCardDefiState extends State<HomeCardDefi> {
   @override
   Widget build(BuildContext context) {
     BodyChanger _bodyChanger = Provider.of<BodyChanger>(context);
+    final theme = Provider.of<ThemeChanger>(context);
+    final brightness = theme.getThemeBrightness();
+
     return GestureDetector(
       onTap: () {
         _bodyChanger.setBody(DefiDetails(defi: widget.defi, newDefi: false));
@@ -27,7 +31,8 @@ class _HomeCardDefiState extends State<HomeCardDefi> {
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 12, 20, 12),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
+          border: Border.all(
+              color: brightness == Brightness.dark ? Colors.white : grayZine),
           borderRadius: BorderRadius.circular(10),
         ),
         height: 90,

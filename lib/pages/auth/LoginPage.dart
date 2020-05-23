@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zine/components/ZineTextField.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/services/AuthService.dart';
+import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/theme.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,6 +40,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
+    final brightness = theme.getThemeBrightness();
+
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(top: 25),
@@ -47,10 +52,15 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                "assets/logo_zine.png",
-                width: 250,
-              ),
+              (brightness == Brightness.dark)
+                  ? Image.asset(
+                      "assets/logo_zine_black.png",
+                      width: 250,
+                    )
+                  : Image.asset(
+                      "assets/logo_zine.png",
+                      width: 250,
+                    ),
               Padding(padding: EdgeInsets.only(top: 40)),
               ZineTextField(
                 field: "Nom d'utilisateur",
@@ -106,10 +116,14 @@ class _LoginPageState extends State<LoginPage> {
             child: RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(text: 'Pas encore de compte ? '),
                   TextSpan(
-                      text: 'Inscrivez-vous ! ',
-                      style: Theme.of(context).textTheme.bodyText2),
+                    text: 'Pas encore de compte ? ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  TextSpan(
+                    text: 'Inscrivez-vous ! ',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                 ],
               ),
               textAlign: TextAlign.center,

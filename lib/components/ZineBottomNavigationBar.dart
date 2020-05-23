@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:zine/constants.dart';
 import 'package:zine/services/BodyChanger.dart';
+import 'package:zine/services/ThemeChanger.dart';
 
 class ZineBottomNavigationBar extends StatefulWidget {
   ZineBottomNavigationBar({Key key}) : super(key: key);
@@ -18,6 +19,8 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     final body = Provider.of<BodyChanger>(context);
+    final theme = Provider.of<ThemeChanger>(context);
+    final brightness = theme.getThemeBrightness();
 
     return BottomNavigationBar(
       selectedItemColor: greenZine,
@@ -35,18 +38,26 @@ class _ZineBottomNavigationBarState extends State<ZineBottomNavigationBar> {
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.checkSquare),
           title: Text("Accueil"),
+          backgroundColor:
+              brightness == Brightness.dark ? Colors.black : Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.newspaper),
           title: Text("Infos"),
+          backgroundColor:
+              brightness == Brightness.dark ? Colors.black : Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.gamepad),
           title: Text("Jeu"),
+          backgroundColor:
+              brightness == Brightness.dark ? Colors.black : Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.globe),
           title: Text("Friends"),
+          backgroundColor:
+              brightness == Brightness.dark ? Colors.black : Colors.white,
         ),
       ],
     );

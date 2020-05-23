@@ -5,6 +5,7 @@ import 'package:zine/constants.dart';
 import 'package:zine/models/_models.dart';
 import 'package:zine/pages/add_defi/AddDefiStep2.dart';
 import 'package:zine/services/BodyChanger.dart';
+import 'package:zine/theme.dart';
 
 class CategoryDefi extends StatelessWidget {
   final Category category;
@@ -21,8 +22,8 @@ class CategoryDefi extends StatelessWidget {
       child: Row(
         children: <Widget>[
           IconCircleBackground(
-            icon: 'user.png',
-            color: greenZine,
+            image: category.icon,
+            color: HexColor(category.color),
             width: 65,
             padding: 12,
           ),
@@ -30,7 +31,7 @@ class CategoryDefi extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(category.title),
+              Text(category.title, style: ZineTextStyle.bold15(context)),
               Text("10 défis", style: Theme.of(context).textTheme.subtitle1),
             ],
           )

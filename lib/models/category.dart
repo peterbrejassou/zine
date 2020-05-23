@@ -16,6 +16,6 @@ class Category {
         id: data['id'] ?? '',
         title: data['title'] ?? '',
         icon: data['icon'] ?? '',
-        color: data['color'] ?? '0xFF4FB286');
+        color: data['color'] ?? '#FFFFFF');
   }
 }

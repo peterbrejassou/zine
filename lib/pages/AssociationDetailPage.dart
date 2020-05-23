@@ -16,36 +16,36 @@ class AssociationDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     BodyChanger _bodyChanger = Provider.of<BodyChanger>(context);
 
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 80,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    _bodyChanger.setBody(AssociationsPage());
-                  },
-                  child: Container(
-                    child: Icon(Icons.arrow_back_ios),
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 80,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      _bodyChanger.setBody(AssociationsPage());
+                    },
+                    child: Container(
+                      child: Icon(Icons.arrow_back_ios),
+                    ),
                   ),
-                ),
-                Padding(padding: EdgeInsets.only(left: 30)),
-                Container(
-                  width: MediaQuery.of(context).size.width - 114,
-                  child: Text(
-                    "Don : " + association.name,
-                    style: ZineTextStyle.regular20(context),
+                  Padding(padding: EdgeInsets.only(left: 30)),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 114,
+                    child: Text(
+                      "Don : " + association.name,
+                      style: ZineTextStyle.regular20(context),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Column(
+            Column(
               children: <Widget>[
                 Container(
                   width: 150,
@@ -104,8 +104,8 @@ class AssociationDetailsPage extends StatelessWidget {
                 )
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
