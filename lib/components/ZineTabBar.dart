@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zine/constants.dart';
-import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/theme.dart';
 
 class ZineTabBar extends StatelessWidget {
@@ -17,8 +15,6 @@ class ZineTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeChanger>(context);
-    final brightness = theme.getThemeBrightness();
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Column(
@@ -30,8 +26,7 @@ class ZineTabBar extends StatelessWidget {
           labelColor: greenZine,
           labelStyle: ZineTextStyle.bold20(context),
           labelPadding: EdgeInsets.symmetric(horizontal: 50),
-          unselectedLabelColor:
-              (brightness == Brightness.dark) ? Colors.white : Colors.black,
+          unselectedLabelColor: Colors.white,
           unselectedLabelStyle: ZineTextStyle.bold20(context),
           isScrollable: true,
           tabs: tabs,

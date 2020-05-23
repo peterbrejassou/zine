@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zine/components/DayOfWeek.dart';
 import 'package:zine/constants.dart';
-import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/theme.dart';
 import 'dart:math' as math;
 
@@ -20,22 +18,16 @@ class _ReminderState extends State<Reminder> {
 
   Future<Null> selectTime(BuildContext context) async {
     timePicked = await showTimePicker(context: context, initialTime: _time);
-    if (timePicked != null) {
-      setState(() {
-        _time = timePicked;
-      });
-    }
+    setState(() {
+      _time = timePicked;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeChanger>(context);
-    final brightness = theme.getThemeBrightness();
-
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(
-            color: brightness == Brightness.dark ? Colors.white : grayZine),
+        border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10),
       ),
       padding: EdgeInsets.all(15),

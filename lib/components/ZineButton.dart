@@ -30,9 +30,7 @@ class ZineButton extends StatelessWidget {
       onPressed: callback,
       child: Text(
         label.toUpperCase(),
-        style: (backgroundColor != Colors.transparent)
-            ? ZineTextStyle.buttonText(context)
-            : ZineTextStyle.bold13(context),
+        style: ZineTextStyle.bold15(context),
       ),
     );
   }

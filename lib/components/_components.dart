@@ -3,7 +3,6 @@ export 'CardDefi.dart';
 export 'CategoryDefi.dart';
 export 'DayOfWeek.dart';
 export 'FriendItem.dart';
-export 'HexaColor.dart';
 export 'HomeCardDefi.dart';
 export 'IconCircleBackground.dart';
 export 'OptionRow.dart';

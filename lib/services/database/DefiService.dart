@@ -27,14 +27,6 @@ class DefiService {
     });
   }
 
-  /* void achievedStep(defiId, stepId) async {
-    collectionReference
-        .document(defiId)
-        .collection("steps")
-        .document(stepId)
-        .updateData({"achieved": true});
-  } */
-
   Future<Defi> getOneData(String defiId) async {
     var doc = await collectionReference.document(defiId).get();
     return Defi.fromMap(doc.data);

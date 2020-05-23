@@ -15,21 +15,6 @@ class ThemeChangerPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 20,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Image.asset(
-                  'assets/icons/cross.png',
-                  width: 20,
-                  alignment: Alignment.centerRight,
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 20)),
             Text(
               "Choissisez le thème à utiliser :",
               style: Theme.of(context).textTheme.headline1,

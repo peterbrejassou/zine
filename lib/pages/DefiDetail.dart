@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/components/StepComponent.dart';
 import 'package:zine/constants.dart';
 import 'package:zine/models/_models.dart';
-import 'package:zine/pages/_pages.dart';
-import 'package:zine/services/BodyChanger.dart';
-import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/services/database/DefiService.dart';
 import 'package:zine/theme.dart';
 import 'package:share/share.dart';
@@ -14,10 +10,8 @@ import 'package:share/share.dart';
 class DefiDetails extends StatefulWidget {
   final Defi defi;
   final bool newDefi;
-  final Category category;
 
-  DefiDetails({Key key, this.defi, this.newDefi, this.category})
-      : super(key: key);
+  DefiDetails({Key key, this.defi, this.newDefi}) : super(key: key);
 
   @override
   _DefiDetailsState createState() => _DefiDetailsState();
@@ -34,10 +28,6 @@ class _DefiDetailsState extends State<DefiDetails> {
 
   @override
   Widget build(BuildContext context) {
-    BodyChanger _bodyChanger = Provider.of<BodyChanger>(context);
-    final theme = Provider.of<ThemeChanger>(context);
-    final brightness = theme.getThemeBrightness();
-
     int totalPointsDefi = 0;
     widget.defi.steps.forEach((step) {
       totalPointsDefi += step.points;
@@ -88,46 +78,25 @@ class _DefiDetailsState extends State<DefiDetails> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  _bodyChanger.setBody(AddDefiStep2(
-                    category: widget.category,
-                  ));
-                },
-                child: Container(
-                  child: Icon(Icons.arrow_back_ios),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width - 104,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.defi.title,
-                      style: ZineTextStyle.regular25(context),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          Text(
+            widget.defi.title,
+            style: ZineTextStyle.regular25(context),
+          ),
+          Padding(padding: EdgeInsets.only(top: 5)),
+          Container(
+            height: 5,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: greenZine,
+            ),
           ),
           Padding(padding: EdgeInsets.only(top: 30)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              (brightness == Brightness.dark)
-                  ? Image.asset("assets/icons/hummingbird.png", width: 47)
-                  : Image.asset("assets/icons/hummingbird_black.png",
-                      width: 47),
+              Image.asset("assets/icons/hummingbird.png", width: 47),
               Padding(padding: EdgeInsets.only(left: 85)),
-              (brightness == Brightness.dark)
-                  ? Image.asset("assets/icons/drop.png", width: 27)
-                  : Image.asset("assets/icons/drop_black.png", width: 27),
+              Image.asset("assets/icons/drop.png", width: 27),
             ],
           ),
           Padding(padding: EdgeInsets.only(top: 10)),
@@ -188,45 +157,45 @@ class _DefiDetailsState extends State<DefiDetails> {
               ),
             ],
           ),
-          if (!newDefi) Padding(padding: EdgeInsets.only(top: 30)),
-          if (!newDefi)
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Étapes",
-                    style: ZineTextStyle.bold17(context),
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  ListView.builder(
-                    shrinkWrap: true,
+          Padding(padding: EdgeInsets.only(top: 25)),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Étapes",
+                  style: ZineTextStyle.bold17(context),
+                ),
+                Padding(padding: EdgeInsets.only(top: 5)),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
                     itemCount: widget.defi.steps.length,
                     itemBuilder: (BuildContext context, int index) {
                       StepDefi step = widget.defi.steps[index];
-                      Defi defi = widget.defi;
-                      return StepComponent(step: step, defi: defi);
+                      print(step);
+                      return StepComponent(step: step);
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          if (!newDefi) Padding(padding: EdgeInsets.only(top: 30)),
-          if (!newDefi)
-            Center(
-              child: ZineButton(
-                label: "Annuler",
-                callback: () {
-                  DefiService().removeUserFromDefi(widget.defi.id);
-                  setState(() {
-                    newDefi = true;
-                  });
-                },
-                backgroundColor: Colors.transparent,
-                textColor: redZine,
-                borderColor: redZine,
-              ),
+          ),
+          Center(
+            child: ZineButton(
+              label: "Annuler",
+              callback: () {
+                DefiService().removeUserFromDefi(widget.defi.id);
+                setState(() {
+                  newDefi = true;
+                });
+              },
+              backgroundColor: Colors.transparent,
+              textColor: redZine,
+              borderColor: redZine,
             ),
+          ),
         ],
       ),
     );

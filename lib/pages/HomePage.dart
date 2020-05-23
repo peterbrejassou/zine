@@ -26,32 +26,23 @@ class HomePage extends StatelessWidget {
             FutureBuilder(
               future: DefiService().getDefisOfUser(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
+                print(snapshot);
                 if (snapshot.hasData) {
-                  if (snapshot.data.length == 0) {
-                    return Center(
-                      child: Text(
-                        "Aucun défi en cours",
-                        textAlign: TextAlign.center,
-                        style: ZineTextStyle.regular15gray(context),
+                  List<Defi> defis = snapshot.data;
+                  return Container(
+                    height: MediaQuery.of(context).size.height - 282,
+                    child: ListView.separated(
+                      itemCount: defis.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Defi defi = defis[index];
+                        return HomeCardDefi(defi: defi);
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Padding(
+                        padding: EdgeInsets.only(top: 20),
                       ),
-                    );
-                  } else {
-                    List<Defi> defis = snapshot.data;
-                    return Container(
-                      height: MediaQuery.of(context).size.height - 282,
-                      child: ListView.separated(
-                        itemCount: defis.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          Defi defi = defis[index];
-                          return HomeCardDefi(defi: defi);
-                        },
-                        separatorBuilder: (BuildContext context, int index) =>
-                            Padding(
-                          padding: EdgeInsets.only(top: 20),
-                        ),
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 } else if (snapshot.hasError) {
                   return Center(
                     //child: Text("Aucun défi en cours..."),
@@ -73,7 +64,7 @@ class HomePage extends StatelessWidget {
         },
         label: Text(
           'Ajouter un défi'.toUpperCase(),
-          style: ZineTextStyle.buttonText(context),
+          style: ZineTextStyle.bold13(context),
         ),
         backgroundColor: greenZine,
       ),

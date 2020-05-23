@@ -1,32 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:zine/services/ThemeChanger.dart';
 import 'constants.dart';
 
 ThemeData buildThemeData(brightness) {
   return ThemeData(
     primarySwatch: greenZineMaterial,
-    scaffoldBackgroundColor:
-        brightness == Brightness.dark ? Colors.black : Colors.white,
     primaryColor: greenZineMaterial,
     accentColor: greenZineMaterial,
     fontFamily: 'ProductSans',
     brightness: brightness,
     textTheme: TextTheme(
-      headline1: TextStyle(
-        fontSize: 25,
-        color: (brightness == Brightness.dark) ? Colors.white : Colors.black,
-      ),
+      headline1: TextStyle(fontSize: 25),
       headline2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      subtitle1: TextStyle(fontSize: 13, color: grayLightZine),
-      bodyText1: TextStyle(
-        fontSize: 15,
-      ),
-      bodyText2: TextStyle(
-        fontSize: 15,
-        color: greenZine,
-        fontWeight: FontWeight.bold,
-      ),
+      subtitle1: TextStyle(fontSize: 13),
+      bodyText1: TextStyle(fontSize: 15),
       button: TextStyle(fontSize: 15),
     ),
   );
@@ -42,14 +28,6 @@ class ZineTextStyle {
 
   static TextStyle green20(BuildContext context) {
     return Theme.of(context).textTheme.headline1.copyWith(color: greenZine);
-  }
-
-  static TextStyle buttonText(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1.copyWith(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        );
   }
 
   static TextStyle bold13(BuildContext context) {

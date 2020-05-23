@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zine/components/_components.dart';
-import 'package:zine/constants.dart';
 import 'package:zine/models/Association.dart';
 import 'package:zine/pages/AssociationDetailPage.dart';
 import 'package:zine/services/BodyChanger.dart';
-import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/services/database/AssociationService.dart';
 
 class AssociationsPage extends StatelessWidget {
@@ -14,8 +12,6 @@ class AssociationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BodyChanger _bodyChanger = Provider.of<BodyChanger>(context);
-    final theme = Provider.of<ThemeChanger>(context);
-    final brightness = theme.getThemeBrightness();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -60,12 +56,6 @@ class AssociationsPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 1,
-                              color: (brightness == Brightness.dark)
-                                  ? Colors.white
-                                  : grayZine,
-                            ),
                           ),
                         ),
                       );

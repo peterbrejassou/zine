@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zine/constants.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({Key key}) : super(key: key);
@@ -13,10 +12,6 @@ class ShopPage extends StatelessWidget {
           Text(
             "Page boutique en développement...\nDisponible dans une prochaine mise à jour.",
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: grayLightZine,
-              fontWeight: FontWeight.normal,
-            ),
           ),
         ],
       ),

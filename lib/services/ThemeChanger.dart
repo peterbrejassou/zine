@@ -5,7 +5,7 @@ class ThemeChanger with ChangeNotifier {
 
   ThemeChanger(this._themeData);
 
-  getThemeBrightness() => _themeData.brightness;
+  getTheme() => _themeData.brightness;
 
   setTheme(ThemeData theme) {
     _themeData = theme;
