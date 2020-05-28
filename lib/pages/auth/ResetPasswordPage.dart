@@ -27,7 +27,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 25),
+        margin: EdgeInsets.only(top: 50),
         padding: EdgeInsets.symmetric(horizontal: 30),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

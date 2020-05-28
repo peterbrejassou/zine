@@ -20,6 +20,7 @@ class _DayOfWeekState extends State<DayOfWeek> {
 
   @override
   Widget build(BuildContext context) {
+    var sizeDays = MediaQuery.of(context).size.width / 10;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -27,8 +28,8 @@ class _DayOfWeekState extends State<DayOfWeek> {
         });
       },
       child: Container(
-        width: 40,
-        height: 40,
+        width: sizeDays,
+        height: sizeDays,
         decoration: BoxDecoration(
           color: activate ? greenZine : Colors.transparent,
           borderRadius: BorderRadius.all(Radius.circular(35)),

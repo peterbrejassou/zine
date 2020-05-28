@@ -21,8 +21,7 @@ dependencies:
   percent_indicator: ^2.1.3
 
   share: ^0.6.4
-
-  day_night_time_picker: ^0.1.3+3
+  flutter_launcher_icons: ^0.7.5
 
 dev_dependencies:
   flutter_test:
@@ -32,15 +31,24 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/logo_zine.png
-    - assets/john_doe.png
     - assets/default_img_article.png
     - assets/earth.png
-    - assets/friends/john_doe.png
+    - assets/logo_zine.png
+    - assets/logo_zine_black.png
+    - assets/john_doe.png
+    - assets/friends/beverly-griffin.png
+    - assets/friends/betty-greene.png
+    - assets/friends/brian-alexander.png
+    - assets/friends/chuck-norris.png
+    - assets/friends/dylan-elliott.png
+    - assets/friends/kevin-brown.png
+    - assets/friends/marilyn-porter.png
     - assets/icons/cross.png
     - assets/icons/design.png
     - assets/icons/drop.png
+    - assets/icons/drop_black.png
     - assets/icons/hummingbird.png
+    - assets/icons/hummingbird_black.png
     - assets/icons/logout.png
     - assets/icons/notification.png
     - assets/icons/user.png
@@ -56,3 +64,8 @@ flutter:
         - asset: assets/fonts/ProductSans-700-italic.ttf
           weight: 700
           style: italic
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo_zine_black.png"

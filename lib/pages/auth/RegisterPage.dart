@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 25),
+        margin: EdgeInsets.only(top: 50),
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

@@ -1,31 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zine/constants.dart';
+import 'package:zine/models/Category.dart';
 import 'package:zine/models/Defi.dart';
 import 'package:zine/pages/DefiDetail.dart';
 import 'package:zine/services/BodyChanger.dart';
+import 'package:zine/services/ThemeChanger.dart';
 import 'package:zine/theme.dart';
 
 class CardDefi extends StatelessWidget {
   final Defi defi;
+  final Category category;
 
   const CardDefi({
     Key key,
     this.defi,
+    this.category,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BodyChanger _bodyChanger = Provider.of<BodyChanger>(context);
+    final theme = Provider.of<ThemeChanger>(context);
+    final brightness = theme.getThemeBrightness();
+
+    int totalPointsDefi = 0;
+    defi.steps.forEach((step) {
+      totalPointsDefi += step.points;
+    });
+
     return GestureDetector(
       onTap: () {
-        _bodyChanger.setBody(DefiDetails(defi: defi, newDefi: true));
+        _bodyChanger.setBody(DefiDetails(
+          defi: defi,
+          newDefi: true,
+          category: category,
+          previousPage: 'card-defi',
+        ));
       },
       child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: (brightness == Brightness.dark)
+                  ? Colors.transparent
+                  : Colors.black,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Column(
           children: <Widget>[
             Container(
-              height: 116,
+              height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -39,7 +63,7 @@ class CardDefi extends StatelessWidget {
                   child: Text(
                     defi.title,
                     textAlign: TextAlign.center,
-                    style: ZineTextStyle.regular15black(context),
+                    style: ZineTextStyle.regular15(context),
                   ),
                 ),
               ),
@@ -67,7 +91,7 @@ class CardDefi extends StatelessWidget {
                           color: Colors.black,
                         ),
                         Text(
-                          "450",
+                          defi.users.length.toString(),
                           style: ZineTextStyle.regular15black(context),
                         ),
                       ],
@@ -81,8 +105,9 @@ class CardDefi extends StatelessWidget {
                           height: 13,
                           color: Colors.black,
                         ),
+                        Padding(padding: EdgeInsets.only(top: 6)),
                         Text(
-                          "300",
+                          totalPointsDefi.toString(),
                           style: ZineTextStyle.regular15black(context),
                         ),
                       ],

@@ -38,6 +38,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
    */
   Widget handleAuthentification(context) {
     final body = Provider.of<BodyChanger>(context);
+    final theme = Provider.of<ThemeChanger>(context);
 
     return StreamBuilder<FirebaseUser>(
       stream: AuthService().streamUser,
@@ -61,7 +62,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Zine',
-      theme: buildThemeData(theme.getTheme()),
+      theme: buildThemeData(theme.getThemeBrightness()),
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),

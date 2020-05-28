@@ -21,11 +21,8 @@ class UserService {
 
   getFriends() async {
     FirebaseUser user = await AuthService().getUser;
-    var friendsIdUser = await collectionReference
-        .document(user.uid)
-        .collection("friends")
-        .getDocuments();
-    return friendsIdUser.documents
+    User userDetails = await UserService().getUserDetails(user.uid);
+    return userDetails.friends
         .map((userId) => UserService().getUserDetails(userId.data))
         .toList();
   }

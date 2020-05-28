@@ -24,7 +24,7 @@ class Defi {
       description: data['description'] ?? '',
       category: data['category'] ?? 'Aucune catégorie',
       steps: (data['steps'] as List ?? [])
-          .map((like) => StepDefi.fromMap(like))
+          .map((step) => StepDefi.fromMap(step))
           .toList(),
       users: (data['users'] as List ?? []).map((user) => user).toList(),
     );
