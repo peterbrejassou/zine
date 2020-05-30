@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zine/components/_components.dart';
 import 'package:zine/constants.dart';
 import 'package:zine/models/_models.dart';
+import 'package:zine/pages/StatisticsPage.dart';
 import 'package:zine/services/database/ArticleService.dart';
 import 'package:zine/theme.dart';
 
@@ -48,18 +49,7 @@ class _ArticlesPageState extends State<ArticlesPage>
     /* 
      * SECOND TAB
      */
-    SingleChildScrollView(
-      child: Center(
-        child: Text(
-          "Page statistiques en développement...\nDisponible dans une prochaine mise à jour.",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: grayLightZine,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      ),
-    ),
+    StatisticsPage()
   ];
 
   @override

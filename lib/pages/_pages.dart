@@ -12,4 +12,5 @@ export 'GamePage.dart';
 export 'HomePage.dart';
 export 'ProfilePage.dart';
 export 'ShopPage.dart';
+export 'StatisticsPage.dart';
 export 'ThemeChangerPage.dart';
