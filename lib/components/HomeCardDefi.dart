@@ -58,7 +58,9 @@ class _HomeCardDefiState extends State<HomeCardDefi> {
                     children: <Widget>[
                       Text(
                         category.title.toUpperCase(),
-                        style: ZineTextStyle.regular12green(context),
+                        style: ZineTextStyle.regular12(context).copyWith(
+                          color: HexColor(category.color),
+                        ),
                       ),
                       Text(
                         widget.defi.title,
@@ -69,7 +71,7 @@ class _HomeCardDefiState extends State<HomeCardDefi> {
                 ),
                 IconCircleBackground(
                   image: category.icon,
-                  color: greenZine,
+                  color: HexColor(category.color),
                   width: 65,
                   padding: 16,
                 ),

@@ -67,7 +67,7 @@ class AssociationDetailsPage extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.only(top: 50)),
                 Text(
-                  association.pointsDonation.toString() +
+                  (association.pointsDonation / 1000).toStringAsFixed(2) +
                       "€ " +
                       association.textDonation,
                   style: ZineTextStyle.bold15green(context),
