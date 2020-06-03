@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zine/components/_components.dart';
-import 'package:zine/constants.dart';
 import 'package:zine/models/_models.dart';
 import 'package:zine/pages/add_defi/AddDefiStep2.dart';
 import 'package:zine/services/BodyChanger.dart';

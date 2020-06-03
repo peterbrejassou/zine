@@ -9,6 +9,7 @@ export 'IconCircleBackground.dart';
 export 'OptionRow.dart';
 export 'ProgressBarGame.dart';
 export 'Reminder.dart';
+export 'StatCard.dart';
 export 'StepComponent.dart';
 export 'ZineAppBar.dart';
 export 'ZineBottomNavigationBar.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zine/components/HexaColor.dart';
-import 'package:zine/constants.dart';
 import 'package:zine/models/Category.dart';
 import 'package:zine/models/Defi.dart';
 import 'package:zine/pages/DefiDetail.dart';
