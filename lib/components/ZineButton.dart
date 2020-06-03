@@ -13,8 +13,8 @@ class ZineButton extends StatelessWidget {
     Key key,
     @required this.label,
     @required this.callback,
-    this.backgroundColor: greenZine,
-    this.textColor: whiteZine,
+    this.backgroundColor,
+    this.textColor,
     this.borderColor: greenZine,
   }) : super(key: key);
 
@@ -22,17 +22,17 @@ class ZineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       shape: StadiumBorder(
-        side: BorderSide(color: borderColor, width: 1),
+        side: BorderSide(color: borderColor ?? greenZine, width: 1),
       ),
-      color: backgroundColor,
-      textColor: textColor,
+      color: backgroundColor ?? greenZine,
+      textColor: textColor ?? whiteZine,
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
       onPressed: callback,
       child: Text(
         label.toUpperCase(),
         style: (backgroundColor != Colors.transparent)
-            ? ZineTextStyle.buttonText(context)
-            : ZineTextStyle.bold13(context),
+            ? ZineTextStyle.buttonText(context).copyWith(color: textColor)
+            : ZineTextStyle.bold13(context).copyWith(color: textColor),
       ),
     );
   }
